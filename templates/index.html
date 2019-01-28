@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='index.js') }}"></script>
+  <title>Index</title>
+</head>
+<body>
+
+  <p>
+    Welcome, {{ g.username }}!
+  </p>
+
+  <p>
+    Channels:
+    {{ channels }}
+  </p>
+
+  <p>
+    Create a new channel:
+    <form name="form_new_channel" method="post">
+      <input name="new_channel" type="text" placeholder="Channel name">
+      <input type="submit" value="Submit">
+    </form>
+  </p>
+
+  <p>
+    <a href="{{ url_for('logout')}}">Logout</a>
+  </p>
+</body>
+</html>
