@@ -1,6 +1,4 @@
-import json
-import os
-import requests
+import json, os, requests
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, g, redirect, render_template, request, session, url_for
 from flask_session import Session
@@ -15,6 +13,7 @@ socketio = SocketIO(app)
 load_dotenv(find_dotenv())
 FLASK_APP = os.getenv("FLASK_APP")
 FLASK_ENV = os.getenv("FLASK_ENV")
+FLASK_DEBUG = os.getenv("FLASK_DEBUG")
 
 # Complete Channel Creation
 # Complete Channel List
@@ -33,24 +32,19 @@ def before_request():
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-  # if g.username:
-  #   if request.method == "POST":
-  #     new_channel = request.form.get('new_channel')
-  #     channels.append(new_channel)
-  #     return redirect(url_for("channel"))
-  #   else:
-  #     return render_template("index.html", channels=channels)
-  # else:
-  #   return redirect(url_for("login"))
-
   if g.username:
-    return render_template("index.html")
+    if request.method == "POST":
+      new_channel = request.form.get('new_channel')
+      channels.append(new_channel)
+      return redirect(url_for("channel", channel_name=new_channel))
+    else:
+      return render_template("index.html", channels=channels)
   else:
     return redirect(url_for("login"))
 
-@app.route("/channel")
-def channel():
-  return render_template("channel.html")
+@app.route("/channel/<string:channel_name>")
+def channel(channel_name):
+  return render_template("channel.html", channel_name=channel_name)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

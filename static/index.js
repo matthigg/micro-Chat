@@ -1,33 +1,34 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Custom parser that converts the 'channels' string received from application.py
+// into a JavaScript array
+var record = false;
+var channel = '';
+var channels = [];
+var channels_string = document.getElementById("channels_hidden").innerHTML;
+for (let i = 0; i < channels_string.length; i++) {
 
-  // Connect to websocket
-  var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+  if (channels_string[i] === "'" && channel === '') {
+    record = !record;
+  } else if (channels_string[i] === "'" && channel !== '') {
+    record = !record;
+    channel = channel.substring(1)
+    channels.push(channel);
+    channel = '';
+  };
+  
+  if (record) {
+    channel += channels_string[i];
+  };
+};
 
-  // When connected, configure buttons
-  socket.on('connect', () => {
+// Hide the channels string that is returned from application.py
+document.getElementById("channels_hidden").style.visibility = "hidden";
 
-    // Each button should emit a "submit vote" event
-    document.querySelectorAll('button').forEach(button => {
-      button.onclick = () => {
-        const selection = button.dataset.vote;
-        socket.emit('submit vote', {'selection': selection});
-      };
-    });
-
-    // Chatroom submit button functionality
-    document.querySelector('#submit_input').onclick = () => {
-      const li = document.createElement('li');
-      li.innerHTML = document.querySelector('#input').value;
-      document.querySelector('#chatroom').append(li);
-      document.querySelector('#input').value = '';
-      return false;
-    }
-  });
-
-  // When a new vote is announced, add to the unordered list
-  socket.on('announce vote', data => {
-    const li = document.createElement('li');
-    li.innerHTML = `Vote recorded: ${data.selection}`;
-    document.querySelector('#votes').append(li);
-  });
-});
+// Create channel room links with names from the channels[] array
+for (let j = 0; j < channels.length; j++) {
+  var a = document.createElement('a');
+  var br = document.createElement('br');
+  a.href = 'channel/' + channels[j];
+  a.innerHTML = channels[j];
+  document.getElementById('channel_list').appendChild(a);
+  document.getElementById('channel_list').appendChild(br);
+}
