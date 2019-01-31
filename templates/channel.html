@@ -7,7 +7,7 @@
 </head>
 <body>
   <p>
-      Welcome {{ g.username }}, you are in channel {{ channel_name }}.
+      Welcome <span id="username">{{ g.username }}</span>, you are in channel {{ channel_name }}.
   </p>
 
   <!-- Chatroom -->
@@ -15,7 +15,7 @@
 
   <!-- Message input field -->
   <form id="form_input">
-    <input id="input" type="text" autofocus>
+    <input id="input" type="text" autofocus placeholder="Enter a message">
     <input id="submit_input" type="submit" value="Submit">
   </form>
 

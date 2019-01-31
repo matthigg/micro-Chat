@@ -15,14 +15,18 @@ FLASK_APP = os.getenv("FLASK_APP")
 FLASK_ENV = os.getenv("FLASK_ENV")
 FLASK_DEBUG = os.getenv("FLASK_DEBUG")
 
+# This array holds a list of all active channels
 channels = []
 
+# Run this before every GET or POST request to check that user is logged in
 @app.before_request
 def before_request():
   g.username = None
   if 'username' in session:
     g.username = session['username']
 
+# Index page will check to see if a new channel name is already taken before 
+# allowing a user to create another one.
 @app.route("/", methods=["GET", "POST"])
 def index():
   if g.username:
@@ -43,10 +47,14 @@ def index():
   else:
     return redirect(url_for("login"))
 
+# This allows a route to create any number of new channels, which is named after
+# the new channel name that a user types in when creating a new channel on the
+# index page
 @app.route("/channel/<string:channel_name>")
 def channel(channel_name):
   return render_template("channel.html", channel_name=channel_name)
 
+# Login using the session variable
 @app.route("/login", methods=["GET", "POST"])
 def login():
   if request.method == "POST":
@@ -56,12 +64,15 @@ def login():
   else:
     return render_template("login.html")
 
+# Logout
 @app.route("/logout")
 def logout():
   session.pop('username', None)
   return redirect(url_for("login"))
 
+# Listen for chatroom messages
 @socketio.on("submit message")
 def message(data):
-  selection = data["message"]
-  emit("announce message", {"message": selection}, broadcast=True)
+  message = data["message"]
+  username = data["username"]
+  emit("announce message", {"message": message, "username": username}, broadcast=True)

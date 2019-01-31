@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Chatroom submit button emits 'submit message'
     document.querySelector('#submit_input').onclick = () => {
       const message = document.querySelector('#input').value;
+      const username = document.getElementById('username').innerHTML
       document.querySelector('#input').value = '';
-      socket.emit('submit message', {'message': message});
+      socket.emit('submit message', {'message': message, 'username': username});
       return false;
     }
   });
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   socket.on('announce message', data => {
     const br = document.createElement('br');
     const span = document.createElement('span');
-    span.innerHTML = `${data.message}`;
+    span.innerHTML = `${data.username}: ${data.message}`;
     document.querySelector('#chatroom').append(span);
     document.querySelector('#chatroom').append(br);
   });
