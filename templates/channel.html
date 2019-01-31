@@ -10,15 +10,18 @@
       Welcome {{ g.username }}, you are in channel {{ channel_name }}.
   </p>
 
-  <ul id="chatroom"></ul>
+  <!-- Chatroom -->
+  <div id="chatroom"></div>
+
+  <!-- Message input field -->
   <form id="form_input">
     <input id="input" type="text" autofocus>
     <input id="submit_input" type="submit" value="Submit">
   </form>
 
-  <p>
+  <div>
     <a href="{{ url_for('index') }}">Index</a><br>
     <a href="{{ url_for('logout') }}">Logout</a>
-  </p>
+  </div>
 </body>
 </html>

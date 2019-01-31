@@ -3,31 +3,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // Connect to websocket
   var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
-  // When connected, configure buttons
+  // When connected, configure submit button
   socket.on('connect', () => {
 
-    // Each button should emit a "submit vote" event
-    document.querySelectorAll('button').forEach(button => {
-      button.onclick = () => {
-        const selection = button.dataset.vote;
-        socket.emit('submit vote', {'selection': selection});
-      };
-    });
-
-    // Chatroom submit button functionality
+    // Chatroom submit button emits 'submit message'
     document.querySelector('#submit_input').onclick = () => {
-      const li = document.createElement('li');
-      li.innerHTML = document.querySelector('#input').value;
-      document.querySelector('#chatroom').append(li);
+      const message = document.querySelector('#input').value;
       document.querySelector('#input').value = '';
+      socket.emit('submit message', {'message': message});
       return false;
     }
   });
 
-  // When a new vote is announced, add to the unordered list
-  socket.on('announce vote', data => {
-    const li = document.createElement('li');
-    li.innerHTML = `Vote recorded: ${data.selection}`;
-    document.querySelector('#votes').append(li);
+  // When a new message is announced, place message string in <span> tags and 
+  // append it to the #chatroom div
+  socket.on('announce message', data => {
+    const br = document.createElement('br');
+    const span = document.createElement('span');
+    span.innerHTML = `${data.message}`;
+    document.querySelector('#chatroom').append(span);
+    document.querySelector('#chatroom').append(br);
   });
 });

@@ -15,13 +15,6 @@ FLASK_APP = os.getenv("FLASK_APP")
 FLASK_ENV = os.getenv("FLASK_ENV")
 FLASK_DEBUG = os.getenv("FLASK_DEBUG")
 
-# Complete Channel Creation
-# Complete Channel List
-# Complete Messages View 
-# Complete Sending Messages
-# Complete Remembering the Channel
-# Complete Personal Touch
-
 channels = []
 
 @app.before_request
@@ -34,9 +27,17 @@ def before_request():
 def index():
   if g.username:
     if request.method == "POST":
+      channel_exists = False
       new_channel = request.form.get('new_channel')
-      channels.append(new_channel)
-      return redirect(url_for("channel", channel_name=new_channel))
+      for channel in channels:
+        if channel == new_channel:
+          channel_exists = True
+      if channel_exists == False:    
+        channels.append(new_channel)
+        return redirect(url_for("channel", channel_name=new_channel))
+      else:
+        error = "Channel already exists."
+        return render_template("index.html", channels=channels, error=error)
     else:
       return render_template("index.html", channels=channels)
   else:
@@ -60,7 +61,7 @@ def logout():
   session.pop('username', None)
   return redirect(url_for("login"))
 
-@socketio.on("submit vote")
-def vote(data):
-  selection = data["selection"]
-  emit("announce vote", {"selection": selection}, broadcast=True)
+@socketio.on("submit message")
+def message(data):
+  selection = data["message"]
+  emit("announce message", {"message": selection}, broadcast=True)
