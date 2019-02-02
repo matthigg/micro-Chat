@@ -7,11 +7,12 @@
 </head>
 <body>
   <p>
-      Welcome <span id="username">{{ g.username }}</span>, you are in channel {{ channel_name }}.
+      Welcome <span id="username">{{ g.username }}</span>, you are in channel "<span id="channel_name">{{ channel_name }}</span>".
   </p>
 
   <!-- Chatroom -->
   <div id="chatroom"></div>
+  <div id="test"></div>
 
   <!-- Message input field -->
   <form id="form_input">

@@ -8,10 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Chatroom submit button emits 'submit message'
     document.querySelector('#submit_input').onclick = () => {
+      const channel_name = document.getElementById('channel_name').innerHTML;
       const message = document.querySelector('#input').value;
-      const username = document.getElementById('username').innerHTML
+      const username = document.getElementById('username').innerHTML;
       document.querySelector('#input').value = '';
-      socket.emit('submit message', {'message': message, 'username': username});
+      socket.emit('submit message', {'channel_name': channel_name, 'message': message, 'username': username});
       return false;
     }
   });
@@ -19,10 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // When a new message is announced, place message string in <span> tags and 
   // append it to the #chatroom div
   socket.on('announce message', data => {
-    const br = document.createElement('br');
-    const span = document.createElement('span');
-    span.innerHTML = `${data.username}: ${data.message}`;
-    document.querySelector('#chatroom').append(span);
-    document.querySelector('#chatroom').append(br);
+    const channel_name = document.getElementById('channel_name').innerHTML;
+    console.log(data);
+    if (channel_name === data.channel_name) {
+      const br = document.createElement('br');
+      const span = document.createElement('span');
+      span.innerHTML = `${data.username}: ${data.message}`;
+      document.querySelector('#chatroom').append(span);
+      document.querySelector('#chatroom').append(br);
+    };
   });
 });

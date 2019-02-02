@@ -15,8 +15,10 @@ FLASK_APP = os.getenv("FLASK_APP")
 FLASK_ENV = os.getenv("FLASK_ENV")
 FLASK_DEBUG = os.getenv("FLASK_DEBUG")
 
-# This array holds a list of all active channels
+# Channels array holds list of active channels, messages dictionary holds message
+# data associated with each channel
 channels = []
+messages = {}
 
 # Run this before every GET or POST request to check that user is logged in
 @app.before_request
@@ -73,6 +75,9 @@ def logout():
 # Listen for chatroom messages
 @socketio.on("submit message")
 def message(data):
+  channel_name = data["channel_name"]
   message = data["message"]
   username = data["username"]
-  emit("announce message", {"message": message, "username": username}, broadcast=True)
+  # messages = {"channel_name": channel_name, "message": message, "username": username}
+  emit("announce message", {"channel_name": channel_name, "message": message, "username": username}, broadcast=True)
+  # emit("announce message", messages, broadcast=True)
