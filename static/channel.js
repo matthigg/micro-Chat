@@ -17,21 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Grab the client-side user's channel_name
   const channel_name = document.getElementById('channel_name').innerHTML;
+
   // When a new message is announced, place message string in <span> tags and 
   // append it to the #chatroom div
-  socket.on('announce message' + ':' + channel_name, chat_history => {
+  socket.on('announce message' + ':' + channel_name, new_message => {
 
-    console.log(chat_history);
+    console.log(new_message);
 
-    for (var key in chat_history) {
-
-      const br = document.createElement('br');
-      const span = document.createElement('span');
-      span.innerHTML = `${chat_history[key].username}: ${chat_history[key].message}`;
-      document.querySelector('#chatroom').append(span);
-      document.querySelector('#chatroom').append(br);
-
-    };
+    const br = document.createElement('br');
+    const span = document.createElement('span');
+    span.innerHTML = `${new_message.username}: ${new_message.message}`;
+    document.querySelector('#chatroom').append(span);
+    document.querySelector('#chatroom').append(br);
   });
 });

@@ -10,6 +10,13 @@
       Welcome <span id="username">{{ g.username }}</span>, you are in channel "<span id="channel_name">{{ channel_name }}</span>".
   </p>
 
+  <!-- Chat History -->
+  <div>
+      {% for key in chat_history %}
+        {{ chat_history[key]['username'] }}: {{ chat_history[key]['message'] }}<br>
+      {% endfor %}
+  </div>
+
   <!-- Chatroom -->
   <div id="chatroom"></div>
 

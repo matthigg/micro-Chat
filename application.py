@@ -40,9 +40,8 @@ def index():
         if channel == new_channel:
           channel_exists = True
       if channel_exists == False:  
-        # Apparently this is somehow modifying the global channels[] array -- it
-        # doesn't seem to work if you make the channels[] array only local to the
-        # scope of the index() function.  
+        # In Python, using *.append() to add to a list will pass by reference and
+        # change the global channels[] list 
         channels.append(new_channel)
         return redirect(url_for("channel", channel_name=new_channel))
       else:
@@ -57,7 +56,15 @@ def index():
 # a user typed in from the index page
 @app.route("/channel/<string:channel_name>")
 def channel(channel_name):
-  return render_template("channel.html", channel_name=channel_name)
+  chat_history = {}
+
+  for key in all_message_data:
+    # Search all_message_data{} to pull relevant chat history and store in the
+    # chat_history{} dictionary
+    if all_message_data[int(key)]["channel_name"] == channel_name:
+      chat_history[key] = all_message_data[key]
+
+  return render_template("channel.html", channel_name=channel_name, chat_history=chat_history)
 
 # Login using the session variable
 @app.route("/login", methods=["GET", "POST"])
@@ -82,17 +89,17 @@ def message(data):
   message = data["message"]
   username = data["username"]
 
+  # The message_id variable has to have the 'global message_id' statement in order
+  # get it to pass by reference instead of by value
   global message_id
-  chat_history = {}
   message_id += 1
 
+  # Add every message sent from every chatroom by every user into one large global
+  # dictionary called all_message_data{}
   individual_message = {"channel_name": channel_name, "message_id": message_id, "message": message, "username": username}
   all_message_data[message_id] = individual_message
 
-  for key, value in all_message_data.items():
-    # print("channel_name: {}".format(all_message_data[int(key)]['channel_name']))
-
-    if all_message_data[int(key)]["channel_name"] == channel_name:
-      chat_history[key] = all_message_data[key]
-
-  emit("announce message" + ":" + channel_name, chat_history, broadcast=True)
+  # The first argument is customized so that the chat_history{} dictionary that is 
+  # emitted is detected client-side only if the client-side user has the correct
+  # channel_name. 
+  emit("announce message" + ":" + channel_name, individual_message, broadcast=True)
