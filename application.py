@@ -15,10 +15,10 @@ FLASK_APP = os.getenv("FLASK_APP")
 FLASK_ENV = os.getenv("FLASK_ENV")
 FLASK_DEBUG = os.getenv("FLASK_DEBUG")
 
-# Channels array holds list of active channels, messages dictionary holds message
-# data associated with each channel
+# Global variables
 channels = []
-messages = {}
+all_message_data = {}
+message_id = 0
 
 # Run this before every GET or POST request to check that user is logged in
 @app.before_request
@@ -32,26 +32,29 @@ def before_request():
 @app.route("/", methods=["GET", "POST"])
 def index():
   if g.username:
+    # POST request
     if request.method == "POST":
       channel_exists = False
       new_channel = request.form.get('new_channel')
       for channel in channels:
         if channel == new_channel:
           channel_exists = True
-      if channel_exists == False:    
+      if channel_exists == False:  
+        # Apparently this is somehow modifying the global channels[] array -- it
+        # doesn't seem to work if you make the channels[] array only local to the
+        # scope of the index() function.  
         channels.append(new_channel)
         return redirect(url_for("channel", channel_name=new_channel))
       else:
-        error = "Channel already exists."
-        return render_template("index.html", channels=channels, error=error)
+        return render_template("index.html", channels=channels, error="Channel already exists.")
+    # GET request
     else:
       return render_template("index.html", channels=channels)
   else:
     return redirect(url_for("login"))
 
-# This allows a route to create any number of new channels, which is named after
-# the new channel name that a user types in when creating a new channel on the
-# index page
+# This allows a route to create any number of new channels, which takes input that
+# a user typed in from the index page
 @app.route("/channel/<string:channel_name>")
 def channel(channel_name):
   return render_template("channel.html", channel_name=channel_name)
@@ -78,6 +81,18 @@ def message(data):
   channel_name = data["channel_name"]
   message = data["message"]
   username = data["username"]
-  # messages = {"channel_name": channel_name, "message": message, "username": username}
-  emit("announce message", {"channel_name": channel_name, "message": message, "username": username}, broadcast=True)
-  # emit("announce message", messages, broadcast=True)
+
+  global message_id
+  chat_history = {}
+  message_id += 1
+
+  individual_message = {"channel_name": channel_name, "message_id": message_id, "message": message, "username": username}
+  all_message_data[message_id] = individual_message
+
+  for key, value in all_message_data.items():
+    # print("channel_name: {}".format(all_message_data[int(key)]['channel_name']))
+
+    if all_message_data[int(key)]["channel_name"] == channel_name:
+      chat_history[key] = all_message_data[key]
+
+  emit("announce message" + ":" + channel_name, chat_history, broadcast=True)

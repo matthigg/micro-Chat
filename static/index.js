@@ -1,16 +1,22 @@
-// Custom parser that converts the 'channels' string received from application.py
-// into a JavaScript array
+// Custom parser that converts the "channels_string" received from the *.innerHTML
+// method into an array of channel names
 var record = false;
 var channel = '';
 var channels = [];
 var channels_string = document.getElementById("channels_hidden").innerHTML;
+
 for (let i = 0; i < channels_string.length; i++) {
 
+  // Start recording at the first single quote character
   if (channels_string[i] === "'" && channel === '') {
     record = !record;
+  // Stop recording at the second single quote character
   } else if (channels_string[i] === "'" && channel !== '') {
     record = !record;
+    // Use *.substring(1) to trim the first single quote character. The second
+    // single quote character is omitted by default.
     channel = channel.substring(1)
+    // The newly trimmed "channel" string is added to the channels[] array
     channels.push(channel);
     channel = '';
   };
