@@ -1,4 +1,4 @@
-import json, os, requests
+import datetime, json, os, requests
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, g, redirect, render_template, request, session, url_for
 from flask_session import Session
@@ -89,6 +89,7 @@ def message(data):
   date = data["date"]
   message = data["message"]
   username = data["username"]
+  # date_modified = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%fZ')
 
   # The 'global message_id' statement allows the global message_id variable to be
   # modified/pass by reference instead of by value
@@ -103,12 +104,20 @@ def message(data):
 
   # Delete oldest messages from the all_message_data{} dictionary if there are 
   # more than 100 entries per channel
-  container_100 = {}
+  container_100 = []
   for key in all_message_data:
     if all_message_data[key]["channel_name"] == channel_name:
-      container_100[key] = all_message_data[key]
-      
-  print(container_100)
+      # container_100 is a list of tuples
+      container_100.append((all_message_data[key]['message_id'], all_message_data[key]['date']))
+
+  # Date is measured in milliseconds since Jan 1, 1970, the smallest is the oldest
+  if len(container_100) > 3:
+    min_date = min(container_100, key=lambda x: x[1])[1]
+    for tuple in container_100:
+      if tuple[1] == min_date:
+        min_date_key = tuple[0]
+        del all_message_data[min_date_key]
+    print('min_date: ', min_date, ' || amd: ', all_message_data)
 
   # The first argument is customized so that the chat_history{} dictionary that is 
   # emitted is detected client-side only if the client-side user has the correct

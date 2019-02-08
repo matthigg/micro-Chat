@@ -8,16 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('#submit_input').onclick = () => {
       const channel_name = document.getElementById('channel_name').innerHTML;
-
-      // Reformat time-stamp
-      const date = new Date();
-      const date_day = date.getDate(); const date_month = date.getMonth(); const date_year = date.getFullYear(); const date_hour = date.getHours(); const date_minute = date.getMinutes(); const date_second = date.getSeconds();
-      const date_modified = `${date_day}-${date_month}-${date_year}, ${date_hour}:${date_minute}:${date_second}`;
-      
       const message = document.querySelector('#input').value;
       const username = document.getElementById('username').innerHTML;
+
+      // Reformat time-stamp, the date is calculated in milliseconds since Jan. 1,
+      // 1970 (UNIX epoch)
+      const date = new Date();
+      const date_ms = date.getTime();
+
       document.querySelector('#input').value = '';
-      socket.emit('submit message', {'channel_name': channel_name, 'date': date_modified, 'message': message, 'username': username});
+      socket.emit('submit message', {'channel_name': channel_name, 'date': date_ms, 'message': message, 'username': username});
       return false;
     }
   });
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const channel_name = document.getElementById('channel_name').innerHTML;
 
   // When a new message is announced, place message string in <span> tags and 
-  // append it to the #chatroom div
+  // append it to the #chatroom <div>
   socket.on('announce message' + ':' + channel_name, new_message => {
     const br = document.createElement('br');
     const span = document.createElement('span');
