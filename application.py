@@ -86,18 +86,29 @@ def logout():
 @socketio.on("submit message")
 def message(data):
   channel_name = data["channel_name"]
+  date = data["date"]
   message = data["message"]
   username = data["username"]
 
-  # The message_id variable has to have the 'global message_id' statement in order
-  # get it to pass by reference instead of by value
+  # The 'global message_id' statement allows the global message_id variable to be
+  # modified/pass by reference instead of by value
   global message_id
   message_id += 1
 
   # Add every message sent from every chatroom by every user into one large global
-  # dictionary called all_message_data{}
-  individual_message = {"channel_name": channel_name, "message_id": message_id, "message": message, "username": username}
+  # dictionary called all_message_data{}. The message_id variable is an arbitrary
+  # number that serves as the key for each message.
+  individual_message = { "channel_name": channel_name, "date": date, "message_id": message_id, "message": message, "username": username }
   all_message_data[message_id] = individual_message
+
+  # Delete oldest messages from the all_message_data{} dictionary if there are 
+  # more than 100 entries per channel
+  container_100 = {}
+  for key in all_message_data:
+    if all_message_data[key]["channel_name"] == channel_name:
+      container_100[key] = all_message_data[key]
+      
+  print(container_100)
 
   # The first argument is customized so that the chat_history{} dictionary that is 
   # emitted is detected client-side only if the client-side user has the correct

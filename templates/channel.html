@@ -13,21 +13,27 @@
   <!-- Chat History -->
   <div>
       {% for key in chat_history %}
-        {{ chat_history[key]['username'] }}: {{ chat_history[key]['message'] }}<br>
+        [{{ chat_history[key]['date'] }}] {{ chat_history[key]['username'] }}: {{ chat_history[key]['message'] }}<br>
       {% endfor %}
   </div>
 
   <!-- Chatroom -->
   <div id="chatroom"></div>
 
+  <br>
+
   <!-- Message input field -->
-  <form id="form_input">
-    <input id="input" type="text" autofocus placeholder="Enter a message">
-    <input id="submit_input" type="submit" value="Submit">
-  </form>
+  <div>
+    <form id="form_input">
+      <input id="input" type="text" autofocus placeholder="Enter a message">
+      <input id="submit_input" type="submit" value="Submit">
+    </form>
+  </div>
+
+  <br>
 
   <div>
-    <a href="{{ url_for('index') }}">Index</a><br>
+    <a href="{{ url_for('index') }}">Index</a><br><br>
     <a href="{{ url_for('logout') }}">Logout</a>
   </div>
 </body>
