@@ -110,14 +110,14 @@ def message(data):
       # container_100 is a list of tuples
       container_100.append((all_message_data[key]['message_id'], all_message_data[key]['date']))
 
-  # Date is measured in milliseconds since Jan 1, 1970, the smallest is the oldest
-  if len(container_100) > 3:
+  # Date is measured in milliseconds since Jan 1, 1970, the message with the 
+  # smallest number of milliseconds is the oldest
+  if len(container_100) > 100:
     min_date = min(container_100, key=lambda x: x[1])[1]
     for tuple in container_100:
       if tuple[1] == min_date:
         min_date_key = tuple[0]
         del all_message_data[min_date_key]
-    print('min_date: ', min_date, ' || amd: ', all_message_data)
 
   # The first argument is customized so that the chat_history{} dictionary that is 
   # emitted is detected client-side only if the client-side user has the correct

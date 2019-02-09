@@ -42,7 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
   socket.on('announce message' + ':' + channel_name, new_message => {
     const br = document.createElement('br');
     const span = document.createElement('span');
-    span.innerHTML = `[${new_message.date}] ${new_message.username}: ${new_message.message}`;
+    const date_js = new Date(new_message.date);
+    const timestamp = moment(date_js).format('MMMM Do YYYY, h:mm:ss a');
+    span.innerHTML = `[${timestamp}] ${new_message.username}: ${new_message.message}`;
     document.querySelector('#chatroom').append(span);
     document.querySelector('#chatroom').append(br);
   });
