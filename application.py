@@ -85,6 +85,9 @@ def logout():
 # Listen for chatroom messages
 @socketio.on("submit message")
 def message(data):
+
+  print("TEST")
+
   channel_name = data["channel_name"]
   date = data["date"]
   message = data["message"]
