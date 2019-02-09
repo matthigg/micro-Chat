@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  // By default, submit button is disabled
+  document.querySelector('#submit_input').disabled = true;
+
+  // Enable button only if there is text in the input field
+  document.querySelector('#input').onkeyup = () => {
+    console.log('key up');
+    if (document.querySelector('#input').value.length > 0)
+      document.querySelector('#submit_input').disabled = false;
+    else
+      document.querySelector('#submit_input').disabled = true;
+  };
+
   // Connect to websocket
   var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
@@ -17,9 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const date_ms = date.getTime();
 
       document.querySelector('#input').value = '';
-      socket.emit('submit message', {'channel_name': channel_name, 'date': date_ms, 'message': message, 'username': username});
+      socket.emit('submit message', { 'channel_name': channel_name, 'date': date_ms, 'message': message, 'username': username });
       return false;
-    }
+    };
   });
 
   // Grab the client-side user's channel_name
