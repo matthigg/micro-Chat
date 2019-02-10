@@ -1,4 +1,5 @@
 import datetime, json, os, requests
+from datetime import datetime
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, g, redirect, render_template, request, session, url_for
 from flask_session import Session
@@ -20,7 +21,7 @@ channels = []
 all_message_data = {}
 message_id = 0
 
-# Run this before every GET or POST request to check that user is logged in
+# Run this before every GET or POST request to get channel_name and username
 @app.before_request
 def before_request():
   g.channel_name = None
@@ -62,7 +63,7 @@ def index():
 @app.route("/channel/<string:channel_name>")
 def channel(channel_name):
   if g.username:
-    chat_history = {}
+    chat_history = []
     session.pop('channel_name', None)
     session['channel_name'] = channel_name
 
@@ -70,7 +71,21 @@ def channel(channel_name):
     # chat_history{} dictionary
     for key in all_message_data:
       if all_message_data[int(key)]["channel_name"] == channel_name:
-        chat_history[key] = all_message_data[key]
+        chat_history.append(all_message_data[key])
+
+    # Convert dates in chatroom_history from milliseconds to a more readable
+    # format
+
+
+    # Send chatroom history to channel.html in a sorted list
+    chat_history.sort(key=lambda x: x['date'])
+    
+    print("===========================================")
+    print("CHAT_HX_2: ", chat_history)
+
+    #
+    # for key in chat_history:
+    #   chat_history[key]["date"] = datetime.fromtimestamp(chat_history[key]["date"] / 1000.0)
 
     return render_template("channel.html", channel_name=channel_name, chat_history=chat_history)
   else:
@@ -119,22 +134,27 @@ def message(data):
   individual_message = { "channel_name": channel_name, "date": date, "message_id": message_id, "message": message, "username": username }
   all_message_data[message_id] = individual_message
 
-  # Delete oldest messages from the all_message_data{} dictionary if there are 
-  # more than 100 entries per channel
+  # The container_100 list contains the message_id and date (in milliseconds) for
+  # each message in the current channel, and stores both values together as tuples
   container_100 = []
   for key in all_message_data:
     if all_message_data[key]["channel_name"] == channel_name:
       # container_100 is a list of tuples
       container_100.append((all_message_data[key]['message_id'], all_message_data[key]['date']))
 
-  # Date is measured in milliseconds since Jan 1, 1970, the message with the 
-  # smallest number of milliseconds is the oldest
-  if len(container_100) > 100:
+  # The tuple with the minimum date value corresponds to the oldest message, and
+  # its key is used to find and delete the corresponding message stored in the
+  # all_message_data{} dictionary
+  if len(container_100) > 3:
     min_date = min(container_100, key=lambda x: x[1])[1]
     for tuple in container_100:
       if tuple[1] == min_date:
         min_date_key = tuple[0]
         del all_message_data[min_date_key]
+
+  # Change the timestamp format for individual_message
+  # x = datetime.fromtimestamp(individual_message["date"] / 1000.0).strftime('%m/%d/%Y')
+  # individual_message["date"] = x
 
   # The first argument is customized so that the chat_history{} dictionary that is 
   # emitted is detected client-side only if the client-side user has the correct

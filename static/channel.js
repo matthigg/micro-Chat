@@ -22,13 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('#submit_input').onclick = () => {
       const message = document.querySelector('#input').value;
+      document.querySelector('#input').value = '';
 
       // Reformat time-stamp, the date is calculated in milliseconds since Jan. 1,
-      // 1970 (UNIX epoch)
+      // 1970 (UNIX time)
       const date = new Date();
       const date_ms = date.getTime();
 
-      document.querySelector('#input').value = '';
       socket.emit('submit message', { 'channel_name': channel_name, 'date': date_ms, 'message': message, 'username': username });
       return false;
     };
@@ -39,9 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   socket.on('announce message' + ':' + channel_name, new_message => {
     const br = document.createElement('br');
     const span = document.createElement('span');
-    const date_js = new Date(new_message.date);
-    const timestamp = moment(date_js).format('MMMM Do YYYY, h:mm:ss a');
-    span.innerHTML = `[${timestamp}] ${new_message.username}: ${new_message.message}`;
+    span.innerHTML = `[${new_message.date}] ${new_message.username}: ${new_message.message}`;
     document.querySelector('#chatroom').append(span);
     document.querySelector('#chatroom').append(br);
   });
