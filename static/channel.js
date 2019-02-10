@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const channel_name = document.getElementById('channel_name').innerHTML;
+  const username = document.getElementById('username').innerHTML;
 
   // By default, submit button is disabled
   document.querySelector('#submit_input').disabled = true;
@@ -19,9 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   socket.on('connect', () => {
 
     document.querySelector('#submit_input').onclick = () => {
-      const channel_name = document.getElementById('channel_name').innerHTML;
       const message = document.querySelector('#input').value;
-      const username = document.getElementById('username').innerHTML;
 
       // Reformat time-stamp, the date is calculated in milliseconds since Jan. 1,
       // 1970 (UNIX epoch)
@@ -33,9 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     };
   });
-
-  // Grab the client-side user's channel_name
-  const channel_name = document.getElementById('channel_name').innerHTML;
 
   // When a new message is announced, place message string in <span> tags and 
   // append it to the #chatroom <div>
