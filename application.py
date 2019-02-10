@@ -23,7 +23,10 @@ message_id = 0
 # Run this before every GET or POST request to check that user is logged in
 @app.before_request
 def before_request():
+  g.channel_name = None
   g.username = None
+  if 'channel_name' in session:
+    g.channel_name = session['channel_name']
   if 'username' in session:
     g.username = session['username']
 
@@ -31,7 +34,7 @@ def before_request():
 # allowing a user to create another one.
 @app.route("/", methods=["GET", "POST"])
 def index():
-  if g.username:
+  if g.username and g.channel_name == None:
     # POST request
     if request.method == "POST":
       channel_exists = False
@@ -43,28 +46,35 @@ def index():
         # In Python, using *.append() to add to a list will pass by reference and
         # change the global channels[] list 
         channels.append(new_channel)
+        session['channel_name'] = new_channel
         return redirect(url_for("channel", channel_name=new_channel))
       else:
         return render_template("index.html", channels=channels, error="Channel already exists.")
     # GET request
     else:
       return render_template("index.html", channels=channels)
+  elif g.username and g.channel_name:
+    return redirect(url_for("channel", channel_name=g.channel_name))
   else:
     return redirect(url_for("login"))
 
-# This allows a route to create any number of new channels, which takes input that
-# a user typed in from the index page
+# This is a generic route that allows for the creation any number of new channels
 @app.route("/channel/<string:channel_name>")
 def channel(channel_name):
-  chat_history = {}
+  if g.username:
+    chat_history = {}
+    session.pop('channel_name', None)
+    session['channel_name'] = channel_name
 
-  for key in all_message_data:
     # Search all_message_data{} to pull relevant chat history and store in the
     # chat_history{} dictionary
-    if all_message_data[int(key)]["channel_name"] == channel_name:
-      chat_history[key] = all_message_data[key]
+    for key in all_message_data:
+      if all_message_data[int(key)]["channel_name"] == channel_name:
+        chat_history[key] = all_message_data[key]
 
-  return render_template("channel.html", channel_name=channel_name, chat_history=chat_history)
+    return render_template("channel.html", channel_name=channel_name, chat_history=chat_history)
+  else:
+    return redirect(url_for("login"))
 
 # Login using the session variable
 @app.route("/login", methods=["GET", "POST"])
@@ -79,8 +89,15 @@ def login():
 # Logout
 @app.route("/logout")
 def logout():
+  session.pop('channel_name', None)
   session.pop('username', None)
   return redirect(url_for("login"))
+
+# Logout of channel
+@app.route("/logout_channel")
+def logout_channel():
+  session.pop('channel_name', None)
+  return redirect(url_for("index"))
 
 # Listen for chatroom messages
 @socketio.on("submit message")
