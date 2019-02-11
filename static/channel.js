@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#submit_input').disabled = true;
 
   // Enable button only if there is text in the input field
-  document.querySelector('#input').onkeyup = () => {
+  document.querySelector('#input').oninput = () => {
     console.log('key up');
     if (document.querySelector('#input').value.length > 0)
       document.querySelector('#submit_input').disabled = false;
