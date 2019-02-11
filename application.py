@@ -1,4 +1,4 @@
-import copy, datetime, json, os, requests
+import copy, datetime, os
 from datetime import datetime
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, g, redirect, render_template, request, session, url_for
@@ -61,16 +61,24 @@ def index():
 # This is a generic route that allows for the creation any number of new channels
 @app.route("/channel/<string:channel_name>")
 def channel(channel_name):
-  if g.username:
+  if request.args.get('name'):
+    session['channel_name'] = request.args.get('name')
+    g.channel_name = request.args.get('name')
+
+  if g.username and g.channel_name:
 
     print("======================================")
     print("G.CHANNEL_NAME: ", g.channel_name)
     print("SESSION['CHANNEL_NAME']: ", session['channel_name'])
+    print("G.USERNAME: ", g.username)
+    print("SESSION['USERNAME']: ", session['username'])
+    print("REQUEST.ARGS: ", [x for x in request.args])
+    print("REQUEST.ARGS.GET: ", request.args.get('name'))
     print("======================================")
 
     chat_history = {}
-    session.pop('channel_name', None)
-    session['channel_name'] = channel_name
+    # session.pop('channel_name', None)
+    # session['channel_name'] = channel_name
 
     # Search all_message_data{} to pull relevant chat history and store in
     # chat_history{}

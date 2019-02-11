@@ -62,7 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
   for (let j = 0; j < channels.length; j++) {
     var a = document.createElement('a');
     var br = document.createElement('br');
-    a.href = 'channel/' + channels[j];
+    a.href = 'channel/' + channels[j] + '?name=' + channels[j];
+    a.name = channels[j];
     a.innerHTML = channels[j];
     document.getElementById('channel_list').appendChild(a);
     document.getElementById('channel_list').appendChild(br);
