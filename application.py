@@ -62,6 +62,12 @@ def index():
 @app.route("/channel/<string:channel_name>")
 def channel(channel_name):
   if g.username:
+
+    print("======================================")
+    print("G.CHANNEL_NAME: ", g.channel_name)
+    print("SESSION['CHANNEL_NAME']: ", session['channel_name'])
+    print("======================================")
+
     chat_history = {}
     session.pop('channel_name', None)
     session['channel_name'] = channel_name
