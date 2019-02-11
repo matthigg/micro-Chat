@@ -1,4 +1,4 @@
-import datetime, json, os, requests
+import copy, datetime, json, os, requests
 from datetime import datetime
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, g, redirect, render_template, request, session, url_for
@@ -31,8 +31,7 @@ def before_request():
   if 'username' in session:
     g.username = session['username']
 
-# Index page will check to see if a new channel name is already taken before 
-# allowing a user to create another one.
+# Index page
 @app.route("/", methods=["GET", "POST"])
 def index():
   if g.username and g.channel_name == None:
@@ -40,12 +39,11 @@ def index():
     if request.method == "POST":
       channel_exists = False
       new_channel = request.form.get('new_channel')
+      # Check for existing channels with the same name
       for channel in channels:
         if channel == new_channel:
           channel_exists = True
       if channel_exists == False:  
-        # In Python, using *.append() to add to a list will pass by reference and
-        # change the global channels[] list 
         channels.append(new_channel)
         session['channel_name'] = new_channel
         return redirect(url_for("channel", channel_name=new_channel))
@@ -54,6 +52,7 @@ def index():
     # GET request
     else:
       return render_template("index.html", channels=channels)
+  # If user closes app and re-opens, they'll be taken back into their channel
   elif g.username and g.channel_name:
     return redirect(url_for("channel", channel_name=g.channel_name))
   else:
@@ -63,31 +62,28 @@ def index():
 @app.route("/channel/<string:channel_name>")
 def channel(channel_name):
   if g.username:
-    chat_history = []
+    chat_history = {}
     session.pop('channel_name', None)
     session['channel_name'] = channel_name
 
-    # Search all_message_data{} to pull relevant chat history and store in the
-    # chat_history{} dictionary
+    # Search all_message_data{} to pull relevant chat history and store in
+    # chat_history{}
     for key in all_message_data:
       if all_message_data[int(key)]["channel_name"] == channel_name:
-        chat_history.append(all_message_data[key])
+        chat_history[key] = all_message_data[key]
 
-    # Convert dates in chatroom_history from milliseconds to a more readable
-    # format
-
-
-    # Send chatroom history to channel.html in a sorted list
-    chat_history.sort(key=lambda x: x['date'])
+    # Use deepcopy and reformat the timestamps on all messages in chat_history{}
+    chat_history_copy = copy.deepcopy(chat_history)
+    for key in chat_history_copy:
+      chat_history_copy[key]['date'] = datetime.fromtimestamp(chat_history_copy[key]['date'] / 1000.0).strftime('%m/%d/%Y, %H:%M:%S')
     
-    print("===========================================")
-    print("CHAT_HX_2: ", chat_history)
+    # print("===========================================")
+    # print("COPY: ", chat_history_copy)
+    # print("AMD: ", all_message_data)
+    # print("same: ", all_message_data == chat_history_copy)
+    # print("===========================================")
 
-    #
-    # for key in chat_history:
-    #   chat_history[key]["date"] = datetime.fromtimestamp(chat_history[key]["date"] / 1000.0)
-
-    return render_template("channel.html", channel_name=channel_name, chat_history=chat_history)
+    return render_template("channel.html", channel_name=channel_name, chat_history=chat_history_copy)
   else:
     return redirect(url_for("login"))
 
@@ -142,9 +138,15 @@ def message(data):
       # container_100 is a list of tuples
       container_100.append((all_message_data[key]['message_id'], all_message_data[key]['date']))
 
+  # print("===========================================")
+  # print("CONTAINER_100: ", container_100[0])
+  # print("AMD: ", all_message_data)
+  # print("===========================================")
+
   # The tuple with the minimum date value corresponds to the oldest message, and
   # its key is used to find and delete the corresponding message stored in the
   # all_message_data{} dictionary
+  # container_100_copy = container_100.copy()
   if len(container_100) > 3:
     min_date = min(container_100, key=lambda x: x[1])[1]
     for tuple in container_100:
@@ -153,10 +155,15 @@ def message(data):
         del all_message_data[min_date_key]
 
   # Change the timestamp format for individual_message
-  # x = datetime.fromtimestamp(individual_message["date"] / 1000.0).strftime('%m/%d/%Y')
-  # individual_message["date"] = x
+  individual_message_copy = individual_message.copy()
+  individual_message_copy["date"] = datetime.fromtimestamp(individual_message["date"] / 1000.0).strftime('%m/%d/%Y, %H:%M:%S')
+
+  # print("=================================")
+  # print("IMC: ", individual_message_copy)
+  # print("AMD: ", all_message_data)
+  # print("=================================")
 
   # The first argument is customized so that the chat_history{} dictionary that is 
   # emitted is detected client-side only if the client-side user has the correct
   # channel_name. 
-  emit("announce message" + ":" + channel_name, individual_message, broadcast=True)
+  emit("announce message" + ":" + channel_name, individual_message_copy, broadcast=True)
