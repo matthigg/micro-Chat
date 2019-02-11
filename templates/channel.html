@@ -26,7 +26,7 @@
   <!-- Message input field -->
   <div>
     <form id="form_input">
-      <input id="input" type="text" autofocus placeholder="Enter a message">
+      <input id="input" type="text" autofocus placeholder="Enter a message" onkeypress="return AvoidSpace(event)">
       <input id="submit_input" type="submit" value="Submit">
     </form>
   </div>

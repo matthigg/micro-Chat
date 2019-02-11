@@ -6,8 +6,8 @@
 <body>
 
   <form name="enter_name" method="post">
-    Enter a username: <br>
-    <input id="username" name="username" type="text">
+    Enter a username (without spaces): <br>
+    <input id="username" name="username" type="text" onkeypress="return AvoidSpace(event)">
     <input id="submit" type="submit" value="Submit">
   </form>
 

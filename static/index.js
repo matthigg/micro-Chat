@@ -69,3 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('channel_list').appendChild(br);
   };
 });
+
+// https://jsfiddle.net/taditdash/hDtA3/
+function AvoidSpace(event) {
+  var k = event ? event.which : window.event.keyCode;
+  if (k == 32) return false;
+};
