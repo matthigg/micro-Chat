@@ -17,9 +17,10 @@ FLASK_ENV = os.getenv("FLASK_ENV")
 FLASK_DEBUG = os.getenv("FLASK_DEBUG")
 
 # Global variables
-channels = []
 all_message_data = {}
+channels = []
 message_id = 0
+usernames = []
 
 # Run this before every GET or POST request to get channel_name and username
 @app.before_request
@@ -66,19 +67,7 @@ def channel(channel_name):
     g.channel_name = request.args.get('name')
 
   if g.username and g.channel_name:
-
-    print("======================================")
-    print("G.CHANNEL_NAME: ", g.channel_name)
-    print("SESSION['CHANNEL_NAME']: ", session['channel_name'])
-    print("G.USERNAME: ", g.username)
-    print("SESSION['USERNAME']: ", session['username'])
-    print("REQUEST.ARGS: ", [x for x in request.args])
-    print("REQUEST.ARGS.GET: ", request.args.get('name'))
-    print("======================================")
-
     chat_history = {}
-    # session.pop('channel_name', None)
-    # session['channel_name'] = channel_name
 
     # Search all_message_data{} to pull relevant chat history and store in
     # chat_history{}
@@ -90,12 +79,6 @@ def channel(channel_name):
     chat_history_copy = copy.deepcopy(chat_history)
     for key in chat_history_copy:
       chat_history_copy[key]['date'] = datetime.fromtimestamp(chat_history_copy[key]['date'] / 1000.0).strftime('%m/%d/%Y, %H:%M:%S')
-    
-    # print("===========================================")
-    # print("COPY: ", chat_history_copy)
-    # print("AMD: ", all_message_data)
-    # print("same: ", all_message_data == chat_history_copy)
-    # print("===========================================")
 
     return render_template("channel.html", channel_name=channel_name, chat_history=chat_history_copy)
   else:
@@ -105,9 +88,17 @@ def channel(channel_name):
 @app.route("/login", methods=["GET", "POST"])
 def login():
   if request.method == "POST":
-    session.pop('username', None)
-    session['username'] = request.form.get('username')
-    return redirect(url_for("index"))
+    # Make sure username field is not blank
+
+    # Check to see if username exists in global usernames[] list
+    for username in usernames:
+      if username == request.form.get('username'):
+        return render_template("login.html", error='Username already exists.')
+    else:
+      usernames.append(request.form.get('username'))
+      session.pop('username', None)
+      session['username'] = request.form.get('username')
+      return redirect(url_for("index"))
   else:
     return render_template("login.html")
 
@@ -152,15 +143,9 @@ def message(data):
       # container_100 is a list of tuples
       container_100.append((all_message_data[key]['message_id'], all_message_data[key]['date']))
 
-  # print("===========================================")
-  # print("CONTAINER_100: ", container_100[0])
-  # print("AMD: ", all_message_data)
-  # print("===========================================")
-
   # The tuple with the minimum date value corresponds to the oldest message, and
   # its key is used to find and delete the corresponding message stored in the
   # all_message_data{} dictionary
-  # container_100_copy = container_100.copy()
   if len(container_100) > 3:
     min_date = min(container_100, key=lambda x: x[1])[1]
     for tuple in container_100:
@@ -171,11 +156,6 @@ def message(data):
   # Change the timestamp format for individual_message
   individual_message_copy = individual_message.copy()
   individual_message_copy["date"] = datetime.fromtimestamp(individual_message["date"] / 1000.0).strftime('%m/%d/%Y, %H:%M:%S')
-
-  # print("=================================")
-  # print("IMC: ", individual_message_copy)
-  # print("AMD: ", all_message_data)
-  # print("=================================")
 
   # The first argument is customized so that the chat_history{} dictionary that is 
   # emitted is detected client-side only if the client-side user has the correct
