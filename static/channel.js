@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   socket.on('connect', () => {
 
     document.querySelector('#submit_input').onclick = () => {
+      document.querySelector('#submit_input').disabled = true;
       const message = document.querySelector('#input').value;
       document.querySelector('#input').value = '';
 
