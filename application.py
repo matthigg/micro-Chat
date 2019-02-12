@@ -110,6 +110,13 @@ def login():
 # Logout
 @app.route("/logout")
 def logout():
+  # This is used to get the right index in usernames[] list
+  count = 0
+  for username in usernames:
+    if username == session['username']:
+      del(usernames[count])
+    count += 1
+    
   session.pop('channel_name', None)
   session.pop('username', None)
   return redirect(url_for("login"))
