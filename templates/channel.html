@@ -14,7 +14,7 @@
   <!-- Chat History -->
   <div>
       {% for key in chat_history %}
-        [{{ chat_history[key]['date'] }}] {{ chat_history[key]['username'] }}: {{ chat_history[key]['message'] }}<br>
+      <img src="https://api.adorable.io/avatars/40/{{ chat_history[key]['username'] }}"> [{{ chat_history[key]['date'] }}] {{ chat_history[key]['username'] }}: {{ chat_history[key]['message'] }}<br>
       {% endfor %}
   </div>
 

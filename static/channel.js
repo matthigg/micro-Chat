@@ -40,8 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
   socket.on('announce message' + ':' + channel_name, new_message => {
     const br = document.createElement('br');
     const span = document.createElement('span');
+    const img = document.createElement('img');
+    const nbsp = ' ';
+    img.src = `https://api.adorable.io/avatars/40/${new_message.username}`;
     span.innerHTML = `[${new_message.date}] ${new_message.username}: ${new_message.message}`;
-    document.querySelector('#chatroom').append(span);
-    document.querySelector('#chatroom').append(br);
+    document.querySelector('#chatroom').append(img, nbsp, span, br);
   });
 });

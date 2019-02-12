@@ -62,10 +62,17 @@ def index():
 # This is a generic route that allows for the creation any number of new channels
 @app.route("/channel/<string:channel_name>")
 def channel(channel_name):
+  # If the URL contains a 'name' key, ie. ?name=channel_name, then assign this 
+  # channel name in as the session and g variable. The site is designed to return
+  # a name:channel_name key:value pair if the user clicks on a channel link from
+  # index.html, although a user could create a channel by manually typing it into
+  # the URL bar, but if they do this then the channel will not get saved in the 
+  # channels[] list and therefore will not be displayed on index.html.
   if request.args.get('name'):
     session['channel_name'] = request.args.get('name')
     g.channel_name = request.args.get('name')
 
+  # Make sure the user is logged in and is currently assigned to a channel
   if g.username and g.channel_name:
     chat_history = {}
 
@@ -88,8 +95,6 @@ def channel(channel_name):
 @app.route("/login", methods=["GET", "POST"])
 def login():
   if request.method == "POST":
-    # Make sure username field is not blank
-
     # Check to see if username exists in global usernames[] list
     for username in usernames:
       if username == request.form.get('username'):
@@ -122,10 +127,9 @@ def message(data):
   date = data["date"]
   message = data["message"]
   username = data["username"]
-  # date_modified = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%fZ')
 
   # The 'global message_id' statement allows the global message_id variable to be
-  # modified/pass by reference instead of by value
+  # modified/passed by reference instead of by value
   global message_id
   message_id += 1
 
@@ -146,7 +150,7 @@ def message(data):
   # The tuple with the minimum date value corresponds to the oldest message, and
   # its key is used to find and delete the corresponding message stored in the
   # all_message_data{} dictionary
-  if len(container_100) > 3:
+  if len(container_100) > 100:
     min_date = min(container_100, key=lambda x: x[1])[1]
     for tuple in container_100:
       if tuple[1] == min_date:
