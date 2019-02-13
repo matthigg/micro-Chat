@@ -1,7 +1,26 @@
-## Short write-up
+# Web Programming with Python and JavaScript - Project 1
+
+- Using Powershell you can set environment variables manually from the command line:
+
+  $ FLASK_APP='application.py'
+  $ FLASK_ENV='development'
+  $ FLASK_DEBUG='0'   
+  $ SECRET_KEY='qwerty'
+
+  ... setting FLASK_DEBUG='1' returns ValueError: signal only works in main thread. Basically, there is some issue with auto-reloading the server when changes are made while using Flask-SocketIO (2/13/2019).
+
+  ... in Powershell you can see which environment variables have currently been set by typing:
+
+  $ Get-ChildItem Env:
+
+  ... once the environment variables have been set you can start a Flask server with:
+
+  $ flask run
+
+# Short write-up
 This is project 2 for CS50 Web Development with Python and Javascript. It is a chat application that uses Flask SocketIO that allows users to create a username (but not a password), create and join chatroom channels, and send messages that can be seen by other users within the channel.
 
-## What's contained in the files
+# What's contained in the files
 login.html, login.js
 Users are prompted to enter a username when intitially visiting the site, nbsp/space key is the only key that is prevented. There are no passwords associated with usernames.
 
@@ -22,5 +41,5 @@ Within a chatroom, a user can send messages with no character restrictions. The 
 
 If a user has an active session, ie. session['username'] is True, then if they close their browser and open it again, they should still be logged in. Likewise, if session['channel_name'] is True, then if they close their browser and open the application again, they should be directed to their current channel.
 
-## Personal touch
+# Personal touch
 The personal touch was associating randomly-generated avatars with each unique username using the Adorable Avatars API at http://avatars.adorable.io/.
