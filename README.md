@@ -1,6 +1,10 @@
-# Web Programming with Python and JavaScript - Project 1
+# Web Programming with Python and JavaScript - Project 2
 
-- Using Powershell you can set environment variables manually from the command line:
+# Description
+- This is project 2 for CS50 Web Development with Python and Javascript. It is a chat application that uses Flask SocketIO that allows users to create a username (but not a password), create and join chatroom channels, and send messages that can be seen by other users within the channel.
+
+# Configuration
+- Before launching the Flask application you have to set the FLASK_APP environment variable. In Powershell you can set FLASK_APP as well as other environment variables manually from the command line:
 
   $ FLASK_APP='application.py'
   $ FLASK_ENV='development'
@@ -13,12 +17,9 @@
 
   $ Get-ChildItem Env:
 
-  ... once the environment variables have been set you can start a Flask server with:
+- Once the environment variables have been set you can start a Flask server with:
 
   $ flask run
-
-# Short write-up
-This is project 2 for CS50 Web Development with Python and Javascript. It is a chat application that uses Flask SocketIO that allows users to create a username (but not a password), create and join chatroom channels, and send messages that can be seen by other users within the channel.
 
 # What's contained in the files
 login.html, login.js
