@@ -78,3 +78,18 @@
 
 # Personal touch
 - The personal touch was associating randomly-generated avatars with each unique username using the Adorable Avatars API at http://avatars.adorable.io/.
+
+# Production
+- This app is a project for CS50 - Web Development with JavaScript and Python, and hasn't been pushed to production. However, in the event that it does get deployed, it would probably be a good idea to put some kind of filter on chatroom messages to prevent hax and also check out these resources:
+
+  1. http://flask.pocoo.org/docs/1.0/tutorial/deploy/
+  2. http://flask.pocoo.org/docs/1.0/config/
+
+# Notes
+- It's a good idea to add *.pyc to the .gitignore file, and additionally you can ask git to remove any *.pyc files that happen to already be tracked by git by running the following from the command line:
+
+  $ git rm --cached *.pyc
+
+  ... https://coderwall.com/p/wrxwog/why-not-to-commit-pyc-files-into-git-and-how-to-fix-if-you-already-did
+
+- The flask_session folder should also be added to the .gitignore file.
