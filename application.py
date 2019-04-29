@@ -99,6 +99,10 @@ def channel(channel_name):
         chat_history[key] = copy.deepcopy(all_message_data[key])
     for key in chat_history:
       chat_history[key]['date'] = datetime.fromtimestamp(chat_history[key]['date'] / 1000.0).strftime('%m/%d/%Y, %H:%M:%S')
+    
+    print('===== channel_name: ', channel_name)
+    print('===== chat_history: ', chat_history)
+    
     return render_template("channel.html", channel_name=channel_name, chat_history=chat_history)
   else:
     return redirect(url_for("login"))
