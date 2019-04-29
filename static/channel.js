@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Connect to websocket.
+  print('===== location.protocol =====: ', location.protocol)
+  print('===== document.domain =====: ', document.domain)
+  print('===== location.port =====: ', location.port)
   var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
   console.log('===== socket =====: ', socket)
 
