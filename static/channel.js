@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('===== document.domain =====: ', document.domain)
   console.log('===== location.port =====: ', location.port)
   console.log('===== URL =====: ', location.protocol + '//' + document.domain + ':' + location.port)
-  var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+  // var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+  var socket = io.connect(location.protocol + '//' + document.domain);
   console.log('===== socket =====: ', socket)
 
   // When connected, configure submit button.
