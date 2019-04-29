@@ -214,5 +214,7 @@ def message(data):
 
   emit("announce message" + ":" + channel_name, individual_message_copy, broadcast=True)
 
+# Not sure if this is needed
+# http://www.alexhadik.com/blog/2015/1/29/using-socketio-with-python-and-flask-on-heroku
 if __name__ == "__main__":
   socketio.run(app)
