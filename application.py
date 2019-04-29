@@ -213,3 +213,6 @@ def message(data):
   # then they will receive, or "hear" the message.
 
   emit("announce message" + ":" + channel_name, individual_message_copy, broadcast=True)
+
+if __name__ == "__main__":
+  socketio.run(app)
