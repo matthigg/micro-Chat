@@ -10,9 +10,7 @@
 # Development Setup & Configuration
 - Environment variables are used to start the server, access the database, access the Goodreads API, and toggle development settings. Using Powershell you can set environment variables manually from the command line:
 
-  $ $env:DATABASE_URL = "database URL"
   $ $env:FLASK_APP = "application.py"
-  $ $env:GOODREADS_API_KEY = "goodsreads api key"
   $ $env:FLASK_ENV = "development"  // debugger + automatic reloader
   $ $env:FLASK_DEBUG = "1"          // debugger
   $ $env:FLASK_ENV = "production"   // turn off development (off by default)
