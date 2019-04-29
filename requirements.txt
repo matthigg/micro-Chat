@@ -2,3 +2,4 @@ Flask==1.0.2
 Flask_SocketIO==3.2.1
 python-dotenv==0.10.1
 gunicorn
+Flask_Session
