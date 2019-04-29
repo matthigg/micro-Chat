@@ -2,17 +2,9 @@
 // render_template() method, it can't be directly handled by JS just yet. 
 // However, using Jinja2 templating, it can be directly inserted onto the page --
 // in this case, the channels[] array that is returned from application.py via
-// render_template() is inserted on line 28: 
+// render_template() is inserted into the DOM: 
 //
-// 28: <p id="channels_hidden">{{ channels }}</p>
-// 
-// ...it is later hidden for aesthetic purposes but the information is retrieved
-// via the *.innerHTML method, which converts it into a string. Then, a custom
-// parser converts the string back into an array and a FOR loops iterates over it
-// to display a list of all of the active channels on index.html.
-
-// Alternatively, you could probably use Jinja2 templating to run a FOR loop over 
-// the channels[] array if you wanted to.
+// <p id="channels_hidden">{{ channels }}</p>
 
 document.addEventListener('DOMContentLoaded', () => {
 
