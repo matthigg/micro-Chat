@@ -4,13 +4,13 @@
 // in this case, the channels[] array that is returned from application.py via
 // render_template() is inserted into the DOM: 
 //
-// <p id="channels_hidden">{{ channels }}</p>
+// <p id="channel_list_hidden">{{ channels }}</p>
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // Hide the list of channel names string that is stored in a <div> on the DOM 
   // when it is returned from application.py.
-  document.querySelector("#channels_hidden").style.visibility = "hidden";
+  document.querySelector("#channel_list_hidden").style.visibility = "hidden";
 
   // By default, the 'Create a new channel' submit button is disabled.
   document.querySelector('#submit').disabled = true;
@@ -30,8 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
   var record = false;
   var channel = '';
   var channels = [];
-  var channels_string = document.getElementById("channels_hidden").innerHTML;
-  console.log('channels_string', channels_string);
+  var channels_string = document.querySelector("#channel_list_hidden").innerHTML;
+  console.log('channels_string: ', channels_string);
+  console.log('typeof(channels_string): ', typeof(channels_string));
 
   for (let i = 0; i < channels_string.length; i++) {
 

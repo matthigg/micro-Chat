@@ -18,7 +18,7 @@ FLASK_DEBUG = os.getenv("FLASK_DEBUG")
 
 # Global variables.
 all_message_data = {}
-channels = []
+channel_list = []
 message_id = 0
 usernames = []
 
@@ -43,20 +43,20 @@ def index():
       channel_exists = False
       new_channel = request.form.get('new_channel')
 
-      # Check for existing channels with the same name.
-      for channel in channels:
+      # Check for existing channels in channel_list[] with the same name.
+      for channel in channel_list:
         if channel == new_channel:
           channel_exists = True
       if channel_exists == False:  
-        channels.append(new_channel)
+        channel_list.append(new_channel)
         session['channel_name'] = new_channel
         return redirect(url_for("channel", channel_name=new_channel))
       else:
-        return render_template("index.html", channels=channels, error="Channel already exists.")
+        return render_template("index.html", channel_list=channel_list, error="Channel already exists.")
     
     # GET
     else:
-      return render_template("index.html", channels=channels)
+      return render_template("index.html", channel_list=channel_list)
 
   # If user closes app and re-opens, they'll be taken back into their channel.
   elif g.username and g.channel_name:
@@ -75,8 +75,8 @@ def channel(channel_name):
   #  
   # This means that a user could create a channel by manually typing it into
   # the URL bar and then submitting a GET request, but if they do this then the 
-  # channel will not get saved in the channels[] list and therefore will not be 
-  # displayed on index.html, and other users would only be able to access that
+  # channel will not get saved in the channel_list[] array and therefore will not 
+  # be displayed on index.html, and other users would only be able to access that
   # channel by manually typing the channel name & submitting a GET request as
   # well.
   if request.args.get('name'):
@@ -107,7 +107,7 @@ def channel(channel_name):
   else:
     return redirect(url_for("login"))
 
-# ==================== LOGIN ========================================================
+# ==================== LOGIN =====================================================
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
