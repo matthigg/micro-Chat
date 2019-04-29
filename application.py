@@ -100,8 +100,8 @@ def channel(channel_name):
     for key in chat_history:
       chat_history[key]['date'] = datetime.fromtimestamp(chat_history[key]['date'] / 1000.0).strftime('%m/%d/%Y, %H:%M:%S')
     
-    print('===== channel_name: ', channel_name)
-    print('===== chat_history: ', chat_history)
+    print('===== channel_name =====: ', channel_name)
+    print('===== chat_history =====: ', chat_history)
     
     return render_template("channel.html", channel_name=channel_name, chat_history=chat_history)
   else:
@@ -157,6 +157,9 @@ def logout_channel():
 
 @socketio.on("submit message")
 def message(data):
+
+  print('===== data =====: ', data)
+
   channel_name = data["channel_name"]
   date = data["date"]
   message = data["message"]
