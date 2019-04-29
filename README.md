@@ -85,6 +85,12 @@
   1. http://flask.pocoo.org/docs/1.0/tutorial/deploy/
   2. http://flask.pocoo.org/docs/1.0/config/
 
+- If deploying to Heroku, change the application launching command in the Procfile to this:
+
+  > web: gunicorn --worker-class eventlet -w 1 application:app
+
+  https://flask-socketio.readthedocs.io/en/latest/#gunicorn-web-server
+
 # Notes
 - It's a good idea to add *.pyc to the .gitignore file, and additionally you can ask git to remove any *.pyc files that happen to already be tracked by git by running the following from the command line:
 
