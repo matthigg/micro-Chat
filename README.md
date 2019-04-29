@@ -63,6 +63,8 @@
 
 - Within each channel the user is greeted with a message letting them know which channel they are in, followed by chat history (if any) that includes up to the most recent 100 messages. There is an input field to submit messages (with no character restrictions, which is probably not safe for production), followed by a link to log out of the channel, and another link to log out of both the channel and the user session.
 
+- Only the most recent 100 messages per channel are stored server-side.
+
 # Remembering the Channel
 - File: application.py
 
