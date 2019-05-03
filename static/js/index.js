@@ -6,9 +6,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  alert('index');
-
-  // By default, the 'Create a new channel' submit button is disabled. Enable 
+  // The 'Create a new channel' submit button is disabled by default. Enable 
   // 'Create a new channel' submit button only if there is text in the input 
   // field.
   document.querySelector('#submit').disabled = true;
@@ -67,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('channel_list').appendChild(a);
     document.getElementById('channel_list').appendChild(br);
   };
+});
 
 // https://jsfiddle.net/taditdash/hDtA3/
 function AvoidSpace(event) {
