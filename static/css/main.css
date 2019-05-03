@@ -46,6 +46,10 @@ body {
   width: auto;
 }
 
+#input::placeholder {
+  color: rgb(70, 56, 0);
+}
+
 #submit_input {
   background-color: rgb(167, 114, 16);
   border-color: rgb(31, 25, 0);

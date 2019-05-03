@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // append it to the #message_new <div>. Also attach a random-ish avatar to
   // each user's message
   socket.on('announce message' + ':' + channel_name, new_message => {
-    const br = document.createElement('br');
     const div = document.createElement('div');
     const img = document.createElement('img');
     const nbsp = ' ';
@@ -53,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     div.style.padding = '3px'
     div.innerHTML = `[${new_message.date}] ${new_message.username}: ${new_message.message}`;
     div.prepend(img, nbsp);    
-    // document.querySelector('#message_new').append(img, nbsp, div);
     document.querySelector('#message_new').append(div);
 
     // As new messages are added to the chatroom space and eventually exceed the 
@@ -64,8 +62,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chatroom_height > (window.innerHeight - 38)) {
       window.scroll(0, chatroom_height);
     }
-
-    console.log(document.querySelector('#chatroom').offsetHeight);
-
   });
 });
