@@ -13,6 +13,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
+    <!-- Flask SocketIO -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
     <!-- Custom CSS, JavaScript, Title -->
     {% block custom_css %}{% endblock %}
     {% block js %}{% endblock %}
@@ -22,11 +25,8 @@
 
   <!-- Body -->
   <body>
-    <div class="container">
 
-      {% block body %}{% endblock %}
-
-    </div>
+    {% block body %}{% endblock %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

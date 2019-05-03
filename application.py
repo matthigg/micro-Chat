@@ -80,7 +80,6 @@ def channel(channel_name):
   # channel by manually typing the channel name & submitting a GET request as
   # well.
   if request.args.get('name'):
-    print('======= pass ')
     session['channel_name'] = request.args.get('name')
     g.channel_name = request.args.get('name')
 
@@ -98,11 +97,7 @@ def channel(channel_name):
       if all_message_data[int(key)]["channel_name"] == channel_name:
         chat_history[key] = copy.deepcopy(all_message_data[key])
     for key in chat_history:
-      chat_history[key]['date'] = datetime.fromtimestamp(chat_history[key]['date'] / 1000.0).strftime('%m/%d/%Y, %H:%M:%S')
-    
-    print('===== channel_name =====: ', channel_name)
-    print('===== chat_history =====: ', chat_history)
-    
+      chat_history[key]['date'] = datetime.fromtimestamp(chat_history[key]['date'] / 1000.0).strftime('%m/%d/%Y, %H:%M:%S')    
     return render_template("channel.html", channel_name=channel_name, chat_history=chat_history)
   else:
     return redirect(url_for("login"))
@@ -157,9 +152,6 @@ def logout_channel():
 
 @socketio.on("submit message")
 def message(data):
-
-  print('===== data =====: ', data)
-
   channel_name = data["channel_name"]
   date = data["date"]
   message = data["message"]

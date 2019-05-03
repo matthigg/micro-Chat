@@ -9,7 +9,7 @@
 {% block body %}
 
   <p>
-    Welcome, <img src="https://api.adorable.io/avatars/40/{{ g.username }}"> {{ g.username }}!
+    Welcome, <img id="avatar" src="https://api.adorable.io/avatars/40/{{ g.username }}"> {{ g.username }}!
   </p>
 
   <p id="channel_list">Channels:<br></p>
@@ -27,9 +27,7 @@
     <a href="{{ url_for('logout') }}">Logout</a>
   </p>
 
-  <!-- Channel list is stored here -->
-  <p id="channel_list_hidden">{{ channel_list }}</p>
+  <!-- Channel list from application.py is stored here -->
+  <p id="channel_list_div_hidden">{{ channel_list }}</p>
 
 {% endblock %}
-
-<!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script> -->

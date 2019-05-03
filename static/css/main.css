@@ -1,0 +1,69 @@
+/* ============================== STICKY FOOTER ============================== */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: rgb(167, 114, 16);
+  /* margin-bottom: 38px; */
+}
+
+/* Change the default bootstrap blue glow around input fields */
+/* https://stackoverflow.com/questions/14820952/change-bootstrap-input-focus-blue-glow */
+.form-control:focus {
+  /* box-shadow: 0 0 3px rgba(255, 101, 0.01); */
+  box-shadow: none;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 38px; 
+}
+
+.message_history {
+  height: 40px;
+  margin: 5px;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#chatroom {
+  margin-bottom: 38px;
+  margin-left: 200px;
+}
+
+#input {
+  background-color: rgb(167, 114, 16);
+  border-color: rgb(31, 25, 0);
+  border-width: 2px;
+  color: rgb(31, 25, 0);
+  width: auto;
+}
+
+#submit_input {
+  background-color: rgb(167, 114, 16);
+  border-color: rgb(31, 25, 0);
+  border-width: 2px;
+  color: rgb(31, 25, 0);
+}
+
+#submit_input[disabled] {
+  background-color: rgb(31, 25, 0);
+  border-color: rgb(31, 25, 0);
+  border-width: 2px;
+  color: rgb(167, 114, 16);
+}
+
+#user-panel {
+  background-color: rgb(31, 25, 0);
+  color: rgb(167, 114, 16);
+  height: 100%;
+  position: fixed;
+  width: 200px;
+}

@@ -39,14 +39,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // When a new message is announced, place message string in <span> tags and 
-  // append it to the #chatroom <div>.
+  // append it to the #message_new <div>. Also attach a random-ish avatar to
+  // each user's message
   socket.on('announce message' + ':' + channel_name, new_message => {
     const br = document.createElement('br');
-    const span = document.createElement('span');
+    const div = document.createElement('div');
     const img = document.createElement('img');
     const nbsp = ' ';
+    img.classList.add('avatar');
     img.src = `https://api.adorable.io/avatars/40/${new_message.username}`;
-    span.innerHTML = `[${new_message.date}] ${new_message.username}: ${new_message.message}`;
-    document.querySelector('#chatroom').append(img, nbsp, span, br);
+    div.classList.add('message');
+    div.style.height = '46px';
+    div.style.padding = '3px'
+    div.innerHTML = `[${new_message.date}] ${new_message.username}: ${new_message.message}`;
+    div.prepend(img, nbsp);    
+    // document.querySelector('#message_new').append(img, nbsp, div);
+    document.querySelector('#message_new').append(div);
+
+    // As new messages are added to the chatroom space and eventually exceed the 
+    // height of the viewport, start to automatically scroll to the bottom of the 
+    // page when new messages are submitted. The window.innerHeight value is
+    // offset by 38px to account for the height of the message input bar.
+    chatroom_height = document.querySelector('#chatroom').offsetHeight;
+    if (chatroom_height > (window.innerHeight - 38)) {
+      window.scroll(0, chatroom_height);
+    }
+
+    console.log(document.querySelector('#chatroom').offsetHeight);
+
   });
 });
