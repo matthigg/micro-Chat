@@ -6,6 +6,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  alert('index');
+
   // By default, the 'Create a new channel' submit button is disabled. Enable 
   // 'Create a new channel' submit button only if there is text in the input 
   // field.
