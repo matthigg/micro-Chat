@@ -24,8 +24,8 @@ body {
 }
 
 .message_history {
-  height: 40px;
-  margin: 5px;
+  height: 40px;     /* match div.style.height in channel.js */
+  margin: 5px;      /* match div.style.margin in channel.js */
 }
 
 .no-gutters {

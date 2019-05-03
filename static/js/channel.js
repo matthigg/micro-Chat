@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     img.classList.add('avatar');
     img.src = `https://api.adorable.io/avatars/40/${new_message.username}`;
     div.classList.add('message');
-    div.style.height = '46px';
-    div.style.padding = '3px'
+    div.style.height = '40px';  // match .message_history class in main.css
+    div.style.margin = '5px'    // match .message_history class in main.css
     div.innerHTML = `[${new_message.date}] ${new_message.username}: ${new_message.message}`;
     div.prepend(img, nbsp);    
     document.querySelector('#message_new').append(div);
