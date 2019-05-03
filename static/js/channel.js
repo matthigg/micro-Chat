@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('#submit_input').disabled = true;
   };
 
+  // Scroll down to the newest message if the message history takes up more space
+  // than the current viewport
+  chatroom_height_history = document.querySelector('#chatroom').offsetHeight;
+  if (chatroom_height_history > (window.innerHeight - 38)) {
+    window.scroll(0, chatroom_height_history);
+  }
+
   // Connect to websocket.
   var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
