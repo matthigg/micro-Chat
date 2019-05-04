@@ -9,17 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // The 'Create a new channel' submit button is disabled by default. Enable 
   // 'Create a new channel' submit button only if there is text in the input 
   // field.
-  document.querySelector('#submit').disabled = true;
-  document.querySelector('#new_channel').oninput = () => {
-    if (document.querySelector('#new_channel').value.length > 0)
-      document.querySelector('#submit').disabled = false;
+  document.querySelector('.submit-channel').disabled = true;
+  document.querySelector('#new-channel').oninput = () => {
+    if (document.querySelector('#new-channel').value.length > 0)
+      document.querySelector('.submit-channel').disabled = false;
     else
-      document.querySelector('#submit').disabled = true;
+      document.querySelector('.submit-channel').disabled = true;
   };
-
-  // Hide the channel_list string that is stored in a <div> on the DOM when it is 
-  // returned from application.py.
-  document.querySelector("#channel_list_div_hidden").style.visibility = "hidden";
 
   // Custom parser that converts the channel names returned from application.py
   // and stored in a hidden <div> on index.html into an array of channels stored 

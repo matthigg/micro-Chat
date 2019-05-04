@@ -7,10 +7,14 @@ body {
   background-color: rgb(167, 114, 16);
 }
 
+.center {
+  text-align: center;
+  margin: 0 auto;
+}
+
 /* Change the default bootstrap blue glow around input fields */
 /* https://stackoverflow.com/questions/14820952/change-bootstrap-input-focus-blue-glow */
 .form-control:focus {
-  /* box-shadow: 0 0 3px rgba(255, 101, 0.01); */
   box-shadow: none;
 }
 
@@ -36,6 +40,42 @@ body {
 .no-gutters {
   margin-right: 0;
   margin-left: 0;
+}
+
+.submit-channel {
+  background-color: rgb(167, 114, 16);
+  border-color: rgb(31, 25, 0);
+  border-width: 2px;
+  color: rgb(31, 25, 0);
+}
+
+.submit-channel[disabled] {
+  background-color: rgb(31, 25, 0);
+  border-color: rgb(31, 25, 0);
+  border-width: 2px;
+  color: rgb(167, 114, 16);
+}
+
+.submit-channel:focus {
+  outline: none;
+}
+
+.submit-input {
+  background-color: rgb(167, 114, 16);
+  border-color: rgb(31, 25, 0);
+  border-width: 2px 2px 2px 0;
+  color: rgb(31, 25, 0);
+}
+
+.submit-input[disabled] {
+  background-color: rgb(31, 25, 0);
+  border-color: rgb(31, 25, 0);
+  border-width: 2px;
+  color: rgb(167, 114, 16);
+}
+
+.submit-input:focus {
+  outline: none;
 }
 
 /* Add margin to bottom of page to account for input height */
@@ -81,25 +121,23 @@ body {
   color: rgb(31, 25, 0);
 }
 
+#modal-nav:focus {
+  outline: none;
+}
+
 @media (min-width: 767px) {
   #modal-nav {
     display: none;
   }
 }
 
-
-#submit_input {
-  background-color: rgb(167, 114, 16);
-  border-color: rgb(31, 25, 0);
-  border-width: 2px 2px 2px 0;
-  color: rgb(31, 25, 0);
+#new-channel {
+  width: 100%;
 }
 
-#submit_input[disabled] {
-  background-color: rgb(31, 25, 0);
-  border-color: rgb(31, 25, 0);
-  border-width: 2px;
-  color: rgb(167, 114, 16);
+#new-channel::placeholder {
+  width: 100%;
+  font-style: italic;
 }
 
 #username::placeholder {

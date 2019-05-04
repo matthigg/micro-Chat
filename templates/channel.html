@@ -38,24 +38,18 @@
   <form id="form_input">
     <div class="input-group">
       <div class="input-group-prepend">
-        <button id="modal-nav" class="input-group-text" type="button">x</button>
+        <button id="modal-nav" class="input-group-text" type="button"><i class="fas fa-angle-down"></i></button>
       </div>
       <input id="input" class="form-control height-40" type="text" autofocus placeholder="Enter a message">
       <div class="input-group-append">
-        <input id="submit_input" type="submit" value="Submit">
+        <input class="submit-input" type="submit" value="Submit">
       </div>
     </div>
   </form>
 </footer>
 
-<!-- Trigger/Open The Modal -->
-<!-- <button id="myBtn">Open Modal</button> -->
-
-
-<!-- The Modal -->
+<!-- Modal -->
 <div id="modal" class="modal">
-
-  <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
@@ -70,7 +64,6 @@
       <a href="{{ url_for('logout') }}">Logout</a>
     </div>
   </div>
-
 </div>
 
 {% endblock %}

@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const username = document.querySelector('.username').innerHTML;
 
   // The message submit button is disabled by default.
-  document.querySelector('#submit_input').disabled = true;
+  document.querySelector('.submit-input').disabled = true;
 
   // Enable message submit button only if there is text in the input field.
   document.querySelector('#input').oninput = () => {
     console.log('key up');
     if (document.querySelector('#input').value.length > 0)
-      document.querySelector('#submit_input').disabled = false;
+      document.querySelector('.submit-input').disabled = false;
     else
-      document.querySelector('#submit_input').disabled = true;
+      document.querySelector('.submit-input').disabled = true;
   };
 
   // Scroll down to the newest message if the message history takes up more space
@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // When message is submitted, save it, clear the input field, and disable the
     // submit button.
-    document.querySelector('#submit_input').onclick = () => {
+    document.querySelector('.submit-input').onclick = () => {
       const message = document.querySelector('#input').value;
-      document.querySelector('#submit_input').disabled = true;
+      document.querySelector('.submit-input').disabled = true;
       document.querySelector('#input').value = '';
 
       // Reformat time-stamp; the date is calculated in milliseconds since Jan. 1,
