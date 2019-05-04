@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px"
+	 height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+<g id="right">
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="15" stroke-linecap="round" stroke-miterlimit="10" x1="30.917" y1="11.833" x2="69.084" y2="50"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="15" stroke-linecap="round" stroke-miterlimit="10" x1="69.084" y1="50" x2="30.917" y2="88.166"/>
+	</g>
+</g>
+<g id="left" display="none">
+	<g display="inline">
+		
+			<line fill="none" stroke="#000000" stroke-width="15" stroke-linecap="round" stroke-miterlimit="10" x1="69.084" y1="11.833" x2="30.916" y2="50"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="15" stroke-linecap="round" stroke-miterlimit="10" x1="30.916" y1="50" x2="69.084" y2="88.166"/>
+	</g>
+</g>
+<g id="down" display="none">
+	<g display="inline">
+		
+			<line fill="none" stroke="#000000" stroke-width="15" stroke-linecap="round" stroke-miterlimit="10" x1="88.166" y1="30.916" x2="50" y2="69.084"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="15" stroke-linecap="round" stroke-miterlimit="10" x1="50" y1="69.084" x2="11.834" y2="30.916"/>
+	</g>
+</g>
+<g id="up" display="none">
+	<g display="inline">
+		
+			<line fill="none" stroke="#000000" stroke-width="15" stroke-linecap="round" stroke-miterlimit="10" x1="11.833" y1="69.084" x2="50" y2="30.916"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="15" stroke-linecap="round" stroke-miterlimit="10" x1="50" y1="30.916" x2="88.166" y2="69.084"/>
+	</g>
+</g>
+</svg>

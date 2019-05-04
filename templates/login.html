@@ -8,21 +8,21 @@
 <!-- Body -->
 {% block body %}
 
-  <div id="choose-a-name" class="text-center">
-    <form name="enter_name" method="post">
-      <h1 class="h3 mb-3 font-weight-normal">Chat</h1>
+  <div id="choose-a-name" class="text-center mt-5">
+    <form class="mb-4" name="enter_name" method="post">
+      <img class="mb-3" width="230px" src="{{ url_for('static', filename='img/logo-2.svg') }}">
       <input id="username" name="username" type="text" class="form-control mb-3" placeholder="Enter a display name" required autofocus onkeypress="return AvoidSpace(event)">
-      <button id="submit" class="btn btn-lg btn-primary btn-block mb-3" type="submit">Sign in</button>
+      <button class="submit-username" type="submit" disabled>Start Chatting!</button>
     </form>
   </div>
 
   {{ error }}
 
-  <div id="introduction">
+  <div id="introduction" class="mb-5">
     <h4>CS50 - Web Development with Python and JavaScript</h4>
     <h5>Project 2</h5>
     <p>
-      This is a chatroom application built using Flask SocketIO. Visitors can create any display name that they want and then either join or create new chatroom channels. No passwords are necessary. A random avatar is assigned to each display name through the <a href="http://avatars.adorable.io/">Adorable Avatars!</a> API.
+      This is a chatroom application built using Flask SocketIO. Visitors can create a display name and then either join or create new chatroom channels. No passwords are necessary. A random avatar is assigned to each display name through the <a href="http://avatars.adorable.io/">Adorable Avatars!</a> API.
     </p>
     <p>
       Chatrooms will save up to 100 of the latest messages, and once visitors log out their display name becomes available for anyone else to use.

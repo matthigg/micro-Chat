@@ -1,10 +1,130 @@
+.color-2f1f25 {
+  color: #2f1f25;
+}
+
+.color-252717 {
+  color: #252717;
+}
+
+.color-15353c {
+  color: #15353c;
+}
+
+.color-b39e42 {
+  color: #b39e42;
+}
+
+.color-dedd98 {
+  color: #dedd98;
+}
+
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #2f1f25;
+  margin: auto;
+  padding: 0;
+  width: 80%;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.2s;
+  animation-name: animatetop;
+  animation-duration: 0.2s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/* The Close Button */
+.close {
+  color: #dedd98;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #b39e42;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #2f1f25;
+  color: #dedd98;
+}
+
+.modal-body {
+  padding: 2px 16px;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #2f1f25;
+  color: #dedd98;
+}
+
+a {
+  color: #15353c;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #15353c;
+}
+
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  background-color: rgb(167, 114, 16);
+  color: #2f1f25;
+  background-color: #dedd98;
 }
 
 .center {
@@ -15,7 +135,9 @@ body {
 /* Change the default bootstrap blue glow around input fields */
 /* https://stackoverflow.com/questions/14820952/change-bootstrap-input-focus-blue-glow */
 .form-control:focus {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
 }
 
 .footer {
@@ -33,8 +155,10 @@ body {
 }
 
 .message_history {
-  height: 40px;     /* match div.style.height in channel.js */
-  margin: 5px;      /* match div.style.margin in channel.js */
+  height: 40px;
+  /* match div.style.height in channel.js */
+  margin: 5px;
+  /* match div.style.margin in channel.js */
 }
 
 .no-gutters {
@@ -42,36 +166,44 @@ body {
   margin-left: 0;
 }
 
-.submit-channel {
-  background-color: rgb(167, 114, 16);
-  border-color: rgb(31, 25, 0);
-  border-width: 2px;
-  color: rgb(31, 25, 0);
+.submit-channel, .submit-username, .submit-input, #modal-nav {
+  background-color: #2f1f25;
+  border-color: #b39e42;
+  color: #dedd98;
 }
 
-.submit-channel[disabled] {
-  background-color: rgb(31, 25, 0);
-  border-color: rgb(31, 25, 0);
+.submit-channel[disabled], .submit-username[disabled], .submit-input[disabled] {
+  background-color: #dedd98;
+  border-color: #b39e42;
+  color: #b39e42;
+}
+
+.submit-channel {
   border-width: 2px;
-  color: rgb(167, 114, 16);
 }
 
 .submit-channel:focus {
   outline: none;
 }
 
-.submit-input {
-  background-color: rgb(167, 114, 16);
-  border-color: rgb(31, 25, 0);
-  border-width: 2px 2px 2px 0;
-  color: rgb(31, 25, 0);
+.submit-username {
+  border-width: 2px;
+  border-radius: 8px;
+  padding: 5px 15px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
-.submit-input[disabled] {
-  background-color: rgb(31, 25, 0);
-  border-color: rgb(31, 25, 0);
-  border-width: 2px;
-  color: rgb(167, 114, 16);
+.submit-username:focus {
+  outline: none;
+}
+
+.submit-username:hover {
+  opacity: 0.8;
+}
+
+.submit-input {
+  border-width: 2px 2px 2px 0;
 }
 
 .submit-input:focus {
@@ -91,34 +223,49 @@ body {
 }
 
 #choose-a-name {
-  margin: 100px auto 0 auto;
+  margin: auto;
   max-width: 330px;
 }
 
 #input {
-  background-color: rgb(167, 114, 16);
-  border-color: rgb(31, 25, 0);
+  background-color: #dedd98;
+  border-color: #15353c;
   border-width: 2px;
-  color: rgb(31, 25, 0);
+  color: #2f1f25;
   width: auto;
 }
 
+#input::-webkit-input-placeholder {
+  color: #15353c;
+  font-style: italic;
+}
+
+#input:-ms-input-placeholder {
+  color: #15353c;
+  font-style: italic;
+}
+
+#input::-ms-input-placeholder {
+  color: #15353c;
+  font-style: italic;
+}
+
 #input::placeholder {
-  color: rgb(70, 56, 0);
+  color: #15353c;
   font-style: italic;
 }
 
 #introduction {
+  background-color: #dedd98;
+  border-top: 2px solid #2f1f25;
   margin-left: auto;
   margin-right: auto;
   max-width: 660px;
+  padding: 20px;
 }
 
 #modal-nav {
-  background-color: rgb(167, 114, 16);
-  border-color: rgb(31, 25, 0);
   border-width: 2px 0 2px 2px;
-  color: rgb(31, 25, 0);
 }
 
 #modal-nav:focus {
@@ -135,13 +282,48 @@ body {
   width: 100%;
 }
 
+#new-channel::-webkit-input-placeholder {
+  width: 100%;
+  font-style: italic;
+}
+
+#new-channel:-ms-input-placeholder {
+  width: 100%;
+  font-style: italic;
+}
+
+#new-channel::-ms-input-placeholder {
+  width: 100%;
+  font-style: italic;
+}
+
 #new-channel::placeholder {
   width: 100%;
   font-style: italic;
 }
 
+#username {
+  border: 2px solid #b39e42;
+  border-radius: 8px;
+}
+
+#username::-webkit-input-placeholder {
+  color: #b39e42;
+  font-style: italic;
+}
+
+#username:-ms-input-placeholder {
+  color: #b39e42;
+  font-style: italic;
+}
+
+#username::-ms-input-placeholder {
+  color: #b39e42;
+  font-style: italic;
+}
+
 #username::placeholder {
-  color: rgb(70, 56, 0);
+  color: #b39e42;
   font-style: italic;
 }
 
@@ -155,82 +337,12 @@ body {
 
 @media (min-width: 767px) {
   #user-panel {
-    background-color: green;
-    color: yellow;
+    background-color: #2f1f25;
+    color: #dedd98;
     height: 100%;
     padding: 10px;
     position: fixed;
     width: 200px;
   }
 }
-
-/* ======================== START: MODAL ====================================== */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.2s;
-  animation-name: animatetop;
-  animation-duration: 0.2s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.modal-header {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
-/* ======================== END: MODAL ======================================== */
+/*# sourceMappingURL=main.css.map */
