@@ -13,9 +13,11 @@
   <!-- User Panel -->
   <div id="user-panel">
     <p>
-      Welcome <span id="username">{{ g.username }}</span>, you are in channel "<span id="channel_name" name="channel_name">{{ channel_name }}</span>".
+      Welcome, <span class="username">{{ g.username }}</span>! 
     </p>
-    <a href="{{ url_for('logout_channel') }}">Change channel</a><br>
+    <p> Channel: <span id="channel_name" name="channel_name">{{ channel_name }}</span>
+    </p>
+    <a href="{{ url_for('logout_channel') }}">Change Channel</a><br>
     <a href="{{ url_for('logout') }}">Logout</a>
   </div>
 
@@ -35,12 +37,40 @@
 <footer class="footer">
   <form id="form_input">
     <div class="input-group">
-      <input id="input" class="form-control" type="text" autofocus placeholder="Enter a message">
+      <div class="input-group-prepend">
+        <button id="modal-nav" class="input-group-text" type="button">x</button>
+      </div>
+      <input id="input" class="form-control height-40" type="text" autofocus placeholder="Enter a message">
       <div class="input-group-append">
         <input id="submit_input" type="submit" value="Submit">
       </div>
     </div>
   </form>
 </footer>
+
+<!-- Trigger/Open The Modal -->
+<!-- <button id="myBtn">Open Modal</button> -->
+
+
+<!-- The Modal -->
+<div id="modal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p>
+        Welcome, <span class="username">{{ g.username }}</span>! 
+      </p>
+      <p> Channel: <span id="channel_name" name="channel_name">{{ channel_name }}</span>
+      </p>
+      <a href="{{ url_for('logout_channel') }}">Change Channel</a><br>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+  </div>
+
+</div>
 
 {% endblock %}

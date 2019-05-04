@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const channel_name = document.getElementById('channel_name').innerHTML;
-  const username = document.getElementById('username').innerHTML;
+  const channel_name = document.querySelector('#channel_name').innerHTML;
+  const username = document.querySelector('.username').innerHTML;
 
   // The message submit button is disabled by default.
   document.querySelector('#submit_input').disabled = true;
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Scroll down to the newest message if the message history takes up more space
-  // than the current viewport
+  // than the current viewport when a user first enters the channel.
   chatroom_height_history = document.querySelector('#chatroom').offsetHeight;
   if (chatroom_height_history > (window.innerHeight - 38)) {
     window.scroll(0, chatroom_height_history);
@@ -70,4 +70,27 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scroll(0, chatroom_height);
     }
   });
+
+// =================================== MODAL =====================================
+// https://www.w3schools.com/howto/howto_css_modals.asp
+  let modal = document.getElementById('modal');
+  let btn = document.getElementById('modal-nav');
+  let span = document.getElementsByClassName('close')[0];
+
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
 });
