@@ -101,8 +101,6 @@ body {
 
 @media (min-width: 767px) {
   #user-panel {
-    /* background-color: rgb(31, 25, 0);
-    color: rgb(167, 114, 16); */
     background-color: green;
     color: yellow;
     height: 100%;
@@ -113,8 +111,6 @@ body {
 }
 
 /* ======================== START: MODAL ====================================== */
-
-/* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -183,5 +179,4 @@ body {
   background-color: #5cb85c;
   color: white;
 }
-
 /* ======================== END: MODAL ======================================== */
