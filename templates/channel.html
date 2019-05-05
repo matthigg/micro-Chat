@@ -24,7 +24,7 @@
   <!-- Chat History & Chatroom -->
   <div id="chatroom">
     {% for key in chat_history %}
-    <div class="message_history">
+    <div class="message-history">
       <img class="avatar" src="https://api.adorable.io/avatars/40/{{ chat_history[key]['username'] }}"> [{{ chat_history[key]['date'] }}] {{ chat_history[key]['username'] }}: {{ chat_history[key]['message'] }}<br>
     </div>
     {% endfor %}
@@ -35,17 +35,20 @@
 
 <!-- Message Input Field -->
 <footer class="footer">
-  <form id="form_input">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <button id="modal-nav" class="input-group-text" type="button"><i class="fas fa-angle-down"></i></button>
+  <div class="flex-row">
+    <div class="message-spacer">x</div>
+    <form class="form-input">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button id="modal-nav" class="input-group-text" type="button"><i class="fas fa-angle-down"></i></button>
+        </div>
+        <input id="message-input" class="form-control height-40" type="text" autofocus placeholder="Enter a message">
+        <div class="input-group-append">
+          <input class="submit-input" type="submit" value="Submit" disabled>
+        </div>
       </div>
-      <input id="input" class="form-control height-40" type="text" autofocus placeholder="Enter a message">
-      <div class="input-group-append">
-        <input class="submit-input" type="submit" value="Submit">
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </footer>
 
 <!-- Modal -->

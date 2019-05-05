@@ -109,12 +109,12 @@
 }
 
 a {
-  color: #15353c;
+  color: #b39e42;
   font-weight: bold;
 }
 
 a:hover {
-  color: #15353c;
+  color: #b39e42;
 }
 
 html {
@@ -127,9 +127,34 @@ body {
   background-color: #dedd98;
 }
 
-.center {
-  text-align: center;
-  margin: 0 auto;
+.avatar-border {
+  border: 1px solid #2f1f25;
+  height: 42px;
+  width: 42px;
+}
+
+.error {
+  color: #15353c;
+  font-weight: bold;
+}
+
+.flex {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 /* Change the default bootstrap blue glow around input fields */
@@ -138,6 +163,14 @@ body {
   -webkit-box-shadow: none;
           box-shadow: none;
   outline: none;
+}
+
+.form-input {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
 .footer {
@@ -154,11 +187,30 @@ body {
   height: 40px;
 }
 
-.message_history {
+.horizontal-border-top {
+  border-top: 2px solid #2f1f25;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.message-history {
   height: 40px;
   /* match div.style.height in channel.js */
   margin: 5px;
   /* match div.style.margin in channel.js */
+}
+
+.message-spacer {
+  background-color: #2f1f25;
+  width: 200px;
+}
+
+@media (max-width: 767px) {
+  .message-spacer {
+    display: none;
+  }
 }
 
 .no-gutters {
@@ -166,53 +218,63 @@ body {
   margin-left: 0;
 }
 
-.submit-channel, .submit-username, .submit-input, #modal-nav {
+.submit-button, #modal-nav {
   background-color: #2f1f25;
   border-color: #b39e42;
   color: #dedd98;
 }
 
-.submit-channel[disabled], .submit-username[disabled], .submit-input[disabled] {
+.submit-button[disabled] {
   background-color: #dedd98;
   border-color: #b39e42;
   color: #b39e42;
 }
 
-.submit-channel {
-  border-width: 2px;
-}
-
-.submit-channel:focus {
-  outline: none;
-}
-
-.submit-username {
+.submit-button {
   border-width: 2px;
   border-radius: 8px;
   padding: 5px 15px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
-.submit-username:focus {
+.submit-button:focus {
   outline: none;
 }
 
-.submit-username:hover {
+.submit-button:hover {
   opacity: 0.8;
 }
 
 .submit-input {
-  border-width: 2px 2px 2px 0;
+  background-color: #2f1f25;
+  border-color: #2f1f25;
+  color: #dedd98;
+  border-width: 2px;
+}
+
+.submit-input[disabled] {
+  background-color: #dedd98;
+  border-color: #2f1f25;
+  color: #b39e42;
 }
 
 .submit-input:focus {
   outline: none;
 }
 
+.text-align-center {
+  text-align: center;
+}
+
+.top-navbar {
+  font-weight: bold;
+  padding: 5px 0;
+}
+
 /* Add margin to bottom of page to account for input height */
 #chatroom {
-  margin-bottom: 38px;
+  margin-bottom: 40px;
 }
 
 /* Add space for the user panel/side navbar at width >= 768px */
@@ -227,37 +289,35 @@ body {
   max-width: 330px;
 }
 
-#input {
-  background-color: #dedd98;
-  border-color: #15353c;
+#message-input {
+  border-color: #2f1f25;
   border-width: 2px;
   color: #2f1f25;
   width: auto;
 }
 
-#input::-webkit-input-placeholder {
-  color: #15353c;
+#message-input::-webkit-input-placeholder {
+  color: #b39e42;
   font-style: italic;
 }
 
-#input:-ms-input-placeholder {
-  color: #15353c;
+#message-input:-ms-input-placeholder {
+  color: #b39e42;
   font-style: italic;
 }
 
-#input::-ms-input-placeholder {
-  color: #15353c;
+#message-input::-ms-input-placeholder {
+  color: #b39e42;
   font-style: italic;
 }
 
-#input::placeholder {
-  color: #15353c;
+#message-input::placeholder {
+  color: #b39e42;
   font-style: italic;
 }
 
 #introduction {
   background-color: #dedd98;
-  border-top: 2px solid #2f1f25;
   margin-left: auto;
   margin-right: auto;
   max-width: 660px;
@@ -279,26 +339,26 @@ body {
 }
 
 #new-channel {
-  width: 100%;
+  width: 80%;
 }
 
 #new-channel::-webkit-input-placeholder {
-  width: 100%;
+  color: #b39e42;
   font-style: italic;
 }
 
 #new-channel:-ms-input-placeholder {
-  width: 100%;
+  color: #b39e42;
   font-style: italic;
 }
 
 #new-channel::-ms-input-placeholder {
-  width: 100%;
+  color: #b39e42;
   font-style: italic;
 }
 
 #new-channel::placeholder {
-  width: 100%;
+  color: #b39e42;
   font-style: italic;
 }
 

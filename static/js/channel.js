@@ -2,37 +2,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const channel_name = document.querySelector('#channel_name').innerHTML;
   const username = document.querySelector('.username').innerHTML;
 
-  // The message submit button is disabled by default.
-  document.querySelector('.submit-input').disabled = true;
-
   // Enable message submit button only if there is text in the input field.
-  document.querySelector('#input').oninput = () => {
+  document.querySelector('#message-input').oninput = () => {
     console.log('key up');
-    if (document.querySelector('#input').value.length > 0)
+    if (document.querySelector('#message-input').value.length > 0)
       document.querySelector('.submit-input').disabled = false;
     else
       document.querySelector('.submit-input').disabled = true;
   };
 
   // Scroll down to the newest message if the message history takes up more space
-  // than the current viewport when a user first enters the channel.
+  // than the current viewport when a user first enters the channel. The 
+  // window.innerHeight value is offset by 40px to account for the height of the 
+  // message input bar.
   chatroom_height_history = document.querySelector('#chatroom').offsetHeight;
-  if (chatroom_height_history > (window.innerHeight - 38)) {
+  if (chatroom_height_history > (window.innerHeight - 40)) {
     window.scroll(0, chatroom_height_history);
   }
 
   // Connect to websocket.
   var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
-
-  // When connected, configure submit button.
   socket.on('connect', () => {
 
     // When message is submitted, save it, clear the input field, and disable the
     // submit button.
     document.querySelector('.submit-input').onclick = () => {
-      const message = document.querySelector('#input').value;
+      const message = document.querySelector('#message-input').value;
       document.querySelector('.submit-input').disabled = true;
-      document.querySelector('#input').value = '';
+      document.querySelector('#message-input').value = '';
 
       // Reformat time-stamp; the date is calculated in milliseconds since Jan. 1,
       // 1970 (UNIX time).
@@ -46,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // When a new message is announced, place message string in <span> tags and 
-  // append it to the #message_new <div>. Also attach a random-ish avatar to
-  // each user's message
+  // append it to the #message_new <div>. Also attach an avatar to each user's 
+  // message
   socket.on('announce message' + ':' + channel_name, new_message => {
     const div = document.createElement('div');
     const img = document.createElement('img');
@@ -64,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // As new messages are added to the chatroom space and eventually exceed the 
     // height of the viewport, start to automatically scroll to the bottom of the 
     // page when new messages are submitted. The window.innerHeight value is
-    // offset by 38px to account for the height of the message input bar.
+    // offset by 40px to account for the height of the message input bar.
     chatroom_height = document.querySelector('#chatroom').offsetHeight;
-    if (chatroom_height > (window.innerHeight - 38)) {
+    if (chatroom_height > (window.innerHeight - 40)) {
       window.scroll(0, chatroom_height);
     }
   });

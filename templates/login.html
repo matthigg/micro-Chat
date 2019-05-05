@@ -12,13 +12,13 @@
     <form class="mb-4" name="enter_name" method="post">
       <img class="mb-3" width="230px" src="{{ url_for('static', filename='img/logo-2.svg') }}">
       <input id="username" name="username" type="text" class="form-control mb-3" placeholder="Enter a display name" required autofocus onkeypress="return AvoidSpace(event)">
-      <button class="submit-username" type="submit" disabled>Start Chatting!</button>
+      <button class="submit-button" type="submit" disabled>Start Chatting!</button>
     </form>
   </div>
 
   {{ error }}
 
-  <div id="introduction" class="mb-5">
+  <div id="introduction" class="horizontal-border-top mb-5">
     <h4>CS50 - Web Development with Python and JavaScript</h4>
     <h5>Project 2</h5>
     <p>

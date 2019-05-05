@@ -9,12 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // The 'Create a new channel' submit button is disabled by default. Enable 
   // 'Create a new channel' submit button only if there is text in the input 
   // field.
-  document.querySelector('.submit-channel').disabled = true;
   document.querySelector('#new-channel').oninput = () => {
     if (document.querySelector('#new-channel').value.length > 0)
-      document.querySelector('.submit-channel').disabled = false;
+      document.querySelector('.submit-button').disabled = false;
     else
-      document.querySelector('.submit-channel').disabled = true;
+      document.querySelector('.submit-button').disabled = true;
   };
 
   // Custom parser that converts the channel names returned from application.py

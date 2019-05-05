@@ -10,34 +10,43 @@
 
 <div class="container">
 
-  <div class="row my-3 no-gutters">
-    <div class="col-10">
-      <h5>Welcome, <img id="avatar" src="https://api.adorable.io/avatars/40/{{ g.username }}"> {{ g.username }}!</h5>
+  <!-- Top Navbar -->
+  <div class="row no-gutters top-navbar my-3 ">
+    <div class="col-4 flex">
+      <div class="mr-auto">Welcome, {{ g.username }}!</div>
     </div>
-    <div class="col-2">  
-      <a href="{{ url_for('logout') }}">Logout</a>
+    <div class="col-4 flex">
+      <img class="margin-auto" width="130px" src="{{ url_for('static', filename='img/logo-2.svg') }}">
+    </div>
+    <div class="col-4 flex">  
+      <a class="ml-auto" href="{{ url_for('logout') }}">Logout</a>
     </div>
   </div>
 
-  <div class="row no-gutters">
-    <div class="col-6">
-      <h5>Current Channels</h5>
-      <p id="channel_list"></p>
-    </div>
-    <div class="col-6 center">
-      <h5>Create a Channel</h5>
-      <form method="post">
-        <input id="new-channel" name="new_channel" class="form-control mb-3" type="text" placeholder="Enter a channel name" onkeypress="return AvoidSpace(event)"><br>
-        <div class="center" width="62px">
-          <button class="submit-channel center" type="submit">Create</button>
+  <!-- Create a Channel -->
+  <div class="row no-gutters horizontal-border-top mb-3">
+    <div class="col-12 text-align-center">
+      <h5 class="mt-2">Create a Channel</h5>
+      <form class="mb-3" method="post">
+        <input id="new-channel" name="new_channel" class="form-control ml-auto mr-auto mb-3" type="text" placeholder="Enter a channel name" onkeypress="return AvoidSpace(event)">
+        <div>
+          <button class="submit-button" type="submit" disabled>Create Channel</button>
         </div>
       </form>
-      {{ error }}
+      <div class="error">{{ error }}</div>
     </div>
-
-    <!-- Channel list from application.py is stored here -->
-    <p id="channel_list_div_hidden" hidden>{{ channel_list }}</p>
   </div>
+
+  <!-- Current Channels -->
+  <div class="row no-gutters horizontal-border-top mb-3">
+    <div class="col-12">
+      <h5 class="mt-2">Current Channels</h5>
+      <p id="channel_list"></p>
+    </div>
+  </div>
+
+  <!-- Channel list from application.py is stored here -->
+  <p id="channel_list_div_hidden" hidden>{{ channel_list }}</p>
 </div>
 
 {% endblock %}
