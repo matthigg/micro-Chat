@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const username = document.querySelector('.username').innerHTML;
 
   // Enable message submit button only if there is text in the input field.
-  document.querySelector('#message-input').oninput = () => {
+  document.querySelector('.message-input').oninput = () => {
     console.log('key up');
-    if (document.querySelector('#message-input').value.length > 0)
+    if (document.querySelector('.message-input').value.length > 0)
       document.querySelector('.submit-input').disabled = false;
     else
       document.querySelector('.submit-input').disabled = true;
@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Scroll down to the newest message if the message history takes up more space
   // than the current viewport when a user first enters the channel. The 
-  // window.innerHeight value is offset by 40px to account for the height of the 
+  // window.innerHeight value is offset by 80px to account for the height of the 
   // message input bar.
   chatroom_height_history = document.querySelector('#chatroom').offsetHeight;
-  if (chatroom_height_history > (window.innerHeight - 40)) {
+  if (chatroom_height_history > (window.innerHeight - 80)) {
     window.scroll(0, chatroom_height_history);
   }
 
@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // When message is submitted, save it, clear the input field, and disable the
     // submit button.
     document.querySelector('.submit-input').onclick = () => {
-      const message = document.querySelector('#message-input').value;
+      const message = document.querySelector('.message-input').value;
       document.querySelector('.submit-input').disabled = true;
-      document.querySelector('#message-input').value = '';
+      document.querySelector('.message-input').value = '';
 
       // Reformat time-stamp; the date is calculated in milliseconds since Jan. 1,
       // 1970 (UNIX time).
@@ -61,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // As new messages are added to the chatroom space and eventually exceed the 
     // height of the viewport, start to automatically scroll to the bottom of the 
     // page when new messages are submitted. The window.innerHeight value is
-    // offset by 40px to account for the height of the message input bar.
+    // offset by 80px to account for the height of the message input bar.
     chatroom_height = document.querySelector('#chatroom').offsetHeight;
-    if (chatroom_height > (window.innerHeight - 40)) {
+    if (chatroom_height > (window.innerHeight - 80)) {
       window.scroll(0, chatroom_height);
     }
   });
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // =================================== MODAL =====================================
 // https://www.w3schools.com/howto/howto_css_modals.asp
   let modal = document.getElementById('modal');
-  let btn = document.getElementById('modal-nav');
+  let btn = document.querySelector('.modal-nav');
   let span = document.getElementsByClassName('close')[0];
 
   // When the user clicks the button, open the modal 

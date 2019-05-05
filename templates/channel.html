@@ -40,9 +40,11 @@
     <form class="form-input">
       <div class="input-group">
         <div class="input-group-prepend">
-          <button id="modal-nav" class="input-group-text" type="button"><i class="fas fa-angle-down"></i></button>
+          <button class="modal-nav" type="button">
+            <img width="16px" src="{{ url_for('static', filename='img/down.svg') }}">
+          </button>
         </div>
-        <input id="message-input" class="form-control height-40" type="text" autofocus placeholder="Enter a message">
+        <input id="message-input" class="message-input form-control height-40" type="text" autofocus placeholder="Enter a message">
         <div class="input-group-append">
           <input class="submit-input" type="submit" value="Submit" disabled>
         </div>

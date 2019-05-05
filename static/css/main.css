@@ -108,6 +108,18 @@
   color: #dedd98;
 }
 
+.submit-button {
+  background-color: #2f1f25;
+  border-color: #b39e42;
+  color: #dedd98;
+}
+
+.submit-button[disabled] {
+  background-color: #dedd98;
+  border-color: #b39e42;
+  color: #b39e42;
+}
+
 a {
   color: #b39e42;
   font-weight: bold;
@@ -131,6 +143,24 @@ body {
   border: 1px solid #2f1f25;
   height: 42px;
   width: 42px;
+}
+
+/* Add margin to bottom of page to account for input height */
+#chatroom {
+  margin-bottom: 60px;
+  padding: 20px;
+}
+
+/* Add space for the user panel/side navbar at width >= 768px */
+@media (min-width: 767px) {
+  #chatroom {
+    margin-left: 200px;
+  }
+}
+
+#choose-a-name {
+  margin: auto;
+  max-width: 330px;
 }
 
 .error {
@@ -175,20 +205,28 @@ body {
 
 .footer {
   position: fixed;
-  bottom: 0;
+  bottom: 20px;
   width: 100%;
-}
-
-.height-38 {
-  height: 38px;
 }
 
 .height-40 {
   height: 40px;
 }
 
+.height-80 {
+  height: 80px;
+}
+
 .horizontal-border-top {
   border-top: 2px solid #2f1f25;
+}
+
+#introduction {
+  background-color: #dedd98;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 660px;
+  padding: 20px;
 }
 
 .margin-auto {
@@ -202,98 +240,10 @@ body {
   /* match div.style.margin in channel.js */
 }
 
-.message-spacer {
-  background-color: #2f1f25;
-  width: 200px;
-}
-
-@media (max-width: 767px) {
-  .message-spacer {
-    display: none;
-  }
-}
-
-.no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.submit-button, #modal-nav {
-  background-color: #2f1f25;
-  border-color: #b39e42;
-  color: #dedd98;
-}
-
-.submit-button[disabled] {
-  background-color: #dedd98;
-  border-color: #b39e42;
-  color: #b39e42;
-}
-
-.submit-button {
-  border-width: 2px;
-  border-radius: 8px;
-  padding: 5px 15px;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-}
-
-.submit-button:focus {
-  outline: none;
-}
-
-.submit-button:hover {
-  opacity: 0.8;
-}
-
-.submit-input {
-  background-color: #2f1f25;
-  border-color: #2f1f25;
-  color: #dedd98;
-  border-width: 2px;
-}
-
-.submit-input[disabled] {
-  background-color: #dedd98;
-  border-color: #2f1f25;
-  color: #b39e42;
-}
-
-.submit-input:focus {
-  outline: none;
-}
-
-.text-align-center {
-  text-align: center;
-}
-
-.top-navbar {
-  font-weight: bold;
-  padding: 5px 0;
-}
-
-/* Add margin to bottom of page to account for input height */
-#chatroom {
-  margin-bottom: 40px;
-}
-
-/* Add space for the user panel/side navbar at width >= 768px */
-@media (min-width: 767px) {
-  #chatroom {
-    margin-left: 200px;
-  }
-}
-
-#choose-a-name {
-  margin: auto;
-  max-width: 330px;
-}
-
 #message-input {
   border-color: #2f1f25;
-  border-width: 2px;
+  border-width: 2px 0 2px 2px;
   color: #2f1f25;
-  width: auto;
 }
 
 #message-input::-webkit-input-placeholder {
@@ -316,24 +266,48 @@ body {
   font-style: italic;
 }
 
-#introduction {
-  background-color: #dedd98;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 660px;
-  padding: 20px;
-}
-
-#modal-nav {
-  border-width: 2px 0 2px 2px;
-}
-
-#modal-nav:focus {
+#message-input:focus {
   outline: none;
 }
 
 @media (min-width: 767px) {
-  #modal-nav {
+  #message-input {
+    border-radius: 8px 0 0 8px;
+    margin-left: 20px;
+  }
+}
+
+.message-spacer {
+  background-color: #2f1f25;
+  width: 200px;
+}
+
+@media (max-width: 767px) {
+  .message-spacer {
+    display: none;
+  }
+}
+
+.modal-nav {
+  background-color: #dedd98;
+  border-color: #2f1f25;
+  border-radius: 8px 0 0 8px;
+  border-width: 2px 0 2px 2px;
+  color: #b39e42;
+  margin-left: 20px;
+}
+
+.modal-nav:hover {
+  background-color: #2f1f25;
+  color: #b39e42;
+}
+
+.modal-nav:focus {
+  outline: none;
+}
+
+@media (min-width: 767px) {
+  .modal-nav {
     display: none;
   }
 }
@@ -360,6 +334,55 @@ body {
 #new-channel::placeholder {
   color: #b39e42;
   font-style: italic;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.submit-button {
+  border-width: 2px;
+  border-radius: 8px;
+  padding: 5px 15px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.submit-button:focus {
+  outline: none;
+}
+
+.submit-button:hover {
+  opacity: 0.8;
+}
+
+.submit-input {
+  background-color: #2f1f25;
+  border-color: #2f1f25;
+  border-radius: 0 8px 8px 0;
+  border-width: 2px 2px 2px 3px;
+  color: #dedd98;
+  margin-right: 20px;
+}
+
+.submit-input[disabled] {
+  background-color: #dedd98;
+  border-color: #2f1f25;
+  color: #b39e42;
+}
+
+.submit-input:focus {
+  outline: none;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.top-navbar {
+  font-weight: bold;
+  padding: 5px 0;
 }
 
 #username {
