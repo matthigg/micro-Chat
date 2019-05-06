@@ -40,7 +40,7 @@
     <form class="form-input">
       <div class="input-group">
         <div class="input-group-prepend">
-          <button class="modal-nav" type="button">
+          <button class="modal-nav-button" type="button">
             <!-- <img width="16px" src="{{ url_for('static', filename='img/down.svg') }}"> -->
             {{ svg_down }}
           </button>
@@ -61,13 +61,18 @@
       <span class="close">&times;</span>
     </div>
     <div class="modal-body">
-      <p>
-        Welcome, <span class="username">{{ g.username }}</span>! 
-      </p>
-      <p> Channel: <span id="channel_name" name="channel_name">{{ channel_name }}</span>
-      </p>
-      <a href="{{ url_for('logout_channel') }}">Change Channel</a><br>
-      <a href="{{ url_for('logout') }}">Logout</a>
+      <div class="modal-item">
+        Welcome, <span class="username">{{ g.username }}</span>!
+      </div>
+      <div class="modal-item">
+        Channel: <span id="channel_name" name="channel_name">{{ channel_name }}</span>
+      </div>
+      <div class="modal-item">
+        <a href="{{ url_for('logout_channel') }}">Change Channel</a>
+      </div>
+      <div class="modal-item">
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
     </div>
   </div>
 </div>

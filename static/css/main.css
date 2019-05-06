@@ -145,6 +145,11 @@ body {
   width: 42px;
 }
 
+.close:hover {
+  color: #dedd98;
+  text-decoration: none;
+}
+
 /* Add margin to bottom of page to account for input height */
 #chatroom {
   margin-bottom: 60px;
@@ -288,7 +293,19 @@ body {
   }
 }
 
-.modal-nav {
+.modal-body {
+  color: #dedd98;
+}
+
+.modal-header {
+  border: 0;
+}
+
+.modal-item {
+  margin-bottom: 20px;
+}
+
+.modal-nav-button {
   background-color: #dedd98;
   border-color: #2f1f25;
   border-radius: 8px 0 0 8px;
@@ -297,21 +314,21 @@ body {
   margin-left: 20px;
 }
 
-.modal-nav:hover {
+.modal-nav-button:hover {
   background-color: #2f1f25;
   color: #b39e42;
 }
 
-.modal-nav:focus {
+.modal-nav-button:focus {
   outline: none;
 }
 
-.modal-nav:hover svg line {
+.modal-nav-button:hover svg line {
   stroke: #b39e42;
 }
 
 @media (min-width: 767px) {
-  .modal-nav {
+  .modal-nav-button {
     display: none;
   }
 }

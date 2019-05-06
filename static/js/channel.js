@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // =================================== MODAL =====================================
 // https://www.w3schools.com/howto/howto_css_modals.asp
 
-  let modal = document.getElementById('modal');
-  let btn = document.querySelector('.modal-nav');
+  let modal = document.querySelector('#modal');
+  let btn = document.querySelector('.modal-nav-button');
   let span = document.getElementsByClassName('close')[0];
 
   // When the user clicks the button, open the modal 
@@ -91,6 +91,4 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = "none";
     }
   }
-
-  // svg_down = document.querySelector('.modal-nav')
 });
