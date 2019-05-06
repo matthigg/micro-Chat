@@ -306,6 +306,10 @@ body {
   outline: none;
 }
 
+.modal-nav:hover svg line {
+  stroke: #b39e42;
+}
+
 @media (min-width: 767px) {
   .modal-nav {
     display: none;
@@ -374,6 +378,15 @@ body {
 
 .submit-input:focus {
   outline: none;
+}
+
+svg {
+  height: 34px;
+  width: 20px;
+}
+
+svg line {
+  stroke: #2f1f25;
 }
 
 .text-align-center {

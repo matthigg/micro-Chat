@@ -1,7 +1,7 @@
 import copy, datetime, os
 from datetime import datetime
 from dotenv import load_dotenv, find_dotenv
-from flask import Flask, g, redirect, render_template, request, session, url_for
+from flask import Flask, g, Markup, redirect, render_template, request, session, url_for
 from flask_session import Session
 from flask_socketio import SocketIO, emit
 
@@ -86,6 +86,10 @@ def channel(channel_name):
   # Make sure the user is logged in and is currently assigned to a channel.
   if g.username and g.channel_name:
 
+    # Read down.svg so that its markup can be passed to channel.html and the color
+    # can be changed with CSS.
+    svg_down = open('static/img/down.svg').read()
+
     # Search all_message_data{} to pull relevant chat history and store in 
     # chat_history{}, which is -supposed- to contain up to the last 100 messages.
     # Use deepcopy because all_message_data{} stores the date as an integer in
@@ -98,7 +102,7 @@ def channel(channel_name):
         chat_history[key] = copy.deepcopy(all_message_data[key])
     for key in chat_history:
       chat_history[key]['date'] = datetime.fromtimestamp(chat_history[key]['date'] / 1000.0).strftime('%m/%d/%Y, %H:%M:%S')    
-    return render_template("channel.html", channel_name=channel_name, chat_history=chat_history)
+    return render_template("channel.html", channel_name=channel_name, chat_history=chat_history, svg_down=Markup(svg_down))
   else:
     return redirect(url_for("login"))
 

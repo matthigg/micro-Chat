@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // =================================== MODAL =====================================
 // https://www.w3schools.com/howto/howto_css_modals.asp
+
   let modal = document.getElementById('modal');
   let btn = document.querySelector('.modal-nav');
   let span = document.getElementsByClassName('close')[0];
@@ -90,4 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = "none";
     }
   }
+
+  // svg_down = document.querySelector('.modal-nav')
 });
