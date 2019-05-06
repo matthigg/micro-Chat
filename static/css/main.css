@@ -1,21 +1,17 @@
-.color-2f1f25 {
+.color-bank-1 {
   color: #2f1f25;
-}
-
-.color-252717 {
   color: #252717;
-}
-
-.color-15353c {
   color: #15353c;
-}
-
-.color-b39e42 {
   color: #b39e42;
+  color: #dedd98;
 }
 
-.color-dedd98 {
-  color: #dedd98;
+.color-bank-2 {
+  color: #ddd;
+  color: #aaa;
+  color: #888;
+  color: #555;
+  color: #222;
 }
 
 .modal {
@@ -65,7 +61,6 @@
     opacity: 1;
   }
 }
-
 @keyframes animatetop {
   from {
     top: -300px;
@@ -76,7 +71,6 @@
     opacity: 1;
   }
 }
-
 /* The Close Button */
 .close {
   color: #dedd98;
@@ -124,7 +118,6 @@ a {
   color: #b39e42;
   font-weight: bold;
 }
-
 a:hover {
   color: #b39e42;
 }
@@ -162,7 +155,6 @@ body {
     margin-left: 200px;
   }
 }
-
 #choose-a-name {
   margin: auto;
   max-width: 330px;
@@ -174,38 +166,25 @@ body {
 }
 
 .flex {
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  align-items: flex-end;
   display: flex;
 }
 
 .flex-row {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
 
 /* Change the default bootstrap blue glow around input fields */
 /* https://stackoverflow.com/questions/14820952/change-bootstrap-input-focus-blue-glow */
 .form-control:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   outline: none;
 }
 
 .form-input {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+  flex-grow: 1;
+  flex-shrink: 0;
 }
 
 .footer {
@@ -250,27 +229,10 @@ body {
   border-width: 2px 0 2px 2px;
   color: #2f1f25;
 }
-
-#message-input::-webkit-input-placeholder {
-  color: #b39e42;
-  font-style: italic;
-}
-
-#message-input:-ms-input-placeholder {
-  color: #b39e42;
-  font-style: italic;
-}
-
-#message-input::-ms-input-placeholder {
-  color: #b39e42;
-  font-style: italic;
-}
-
 #message-input::placeholder {
   color: #b39e42;
   font-style: italic;
 }
-
 #message-input:focus {
   outline: none;
 }
@@ -281,7 +243,6 @@ body {
     margin-left: 20px;
   }
 }
-
 .message-spacer {
   background-color: #2f1f25;
   width: 200px;
@@ -292,7 +253,6 @@ body {
     display: none;
   }
 }
-
 .modal-body {
   color: #dedd98;
 }
@@ -313,16 +273,13 @@ body {
   color: #b39e42;
   margin-left: 20px;
 }
-
 .modal-nav-button:hover {
   background-color: #2f1f25;
   color: #b39e42;
 }
-
 .modal-nav-button:focus {
   outline: none;
 }
-
 .modal-nav-button:hover svg line {
   stroke: #b39e42;
 }
@@ -332,26 +289,9 @@ body {
     display: none;
   }
 }
-
 #new-channel {
   width: 80%;
 }
-
-#new-channel::-webkit-input-placeholder {
-  color: #b39e42;
-  font-style: italic;
-}
-
-#new-channel:-ms-input-placeholder {
-  color: #b39e42;
-  font-style: italic;
-}
-
-#new-channel::-ms-input-placeholder {
-  color: #b39e42;
-  font-style: italic;
-}
-
 #new-channel::placeholder {
   color: #b39e42;
   font-style: italic;
@@ -366,14 +306,11 @@ body {
   border-width: 2px;
   border-radius: 8px;
   padding: 5px 15px;
-  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
-
 .submit-button:focus {
   outline: none;
 }
-
 .submit-button:hover {
   opacity: 0.8;
 }
@@ -386,13 +323,11 @@ body {
   color: #dedd98;
   margin-right: 20px;
 }
-
 .submit-input[disabled] {
   background-color: #dedd98;
   border-color: #2f1f25;
   color: #b39e42;
 }
-
 .submit-input:focus {
   outline: none;
 }
@@ -401,7 +336,6 @@ svg {
   height: 34px;
   width: 20px;
 }
-
 svg line {
   stroke: #2f1f25;
 }
@@ -419,22 +353,6 @@ svg line {
   border: 2px solid #b39e42;
   border-radius: 8px;
 }
-
-#username::-webkit-input-placeholder {
-  color: #b39e42;
-  font-style: italic;
-}
-
-#username:-ms-input-placeholder {
-  color: #b39e42;
-  font-style: italic;
-}
-
-#username::-ms-input-placeholder {
-  color: #b39e42;
-  font-style: italic;
-}
-
 #username::placeholder {
   color: #b39e42;
   font-style: italic;
@@ -447,7 +365,6 @@ svg line {
     width: 0;
   }
 }
-
 @media (min-width: 767px) {
   #user-panel {
     background-color: #2f1f25;
@@ -458,4 +375,5 @@ svg line {
     width: 200px;
   }
 }
+
 /*# sourceMappingURL=main.css.map */
