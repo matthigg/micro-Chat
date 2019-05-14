@@ -128,25 +128,15 @@
   color: #e5e4cf;
 }
 
-.submit-button {
-  background-color: #202557;
-  border-color: #046ab0;
-  color: #e5e4cf;
-}
-
-.submit-button[disabled] {
-  background-color: #e5e4cf;
-  border-color: #046ab0;
-  color: #046ab0;
-}
-
 a {
   color: #046ab0;
   font-weight: bold;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 a:hover {
-  color: #046ab0;
+  color: #a43e23;
 }
 
 html {
@@ -189,8 +179,9 @@ body {
   }
 }
 
-#choose-a-name {
-  margin: auto;
+.choose-a-name {
+  margin-left: auto;
+  margin-right: auto;
   max-width: 330px;
 }
 
@@ -250,6 +241,38 @@ body {
 
 .horizontal-border-top {
   border-top: 2px solid #202557;
+}
+
+.input {
+  border: 2px solid #046ab0;
+  border-radius: 8px;
+  color: #046ab0;
+}
+
+.input::-webkit-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+.input:-ms-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+.input::-ms-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+.input::placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+.input:focus {
+  border: 2px solid #a43e23;
+  border-radius: 8px;
+  color: #a43e23;
 }
 
 #introduction {
@@ -389,6 +412,18 @@ body {
 }
 
 .submit-button {
+  background-color: #202557;
+  border-color: #046ab0;
+  color: #e5e4cf;
+}
+
+.submit-button[disabled] {
+  background-color: #e5e4cf;
+  border-color: #046ab0;
+  color: #046ab0;
+}
+
+.submit-button {
   border-width: 2px;
   border-radius: 8px;
   padding: 5px 15px;
@@ -400,8 +435,13 @@ body {
   outline: none;
 }
 
-.submit-button:hover {
-  opacity: 0.8;
+.submit-button:hover:enabled {
+  background-color: #a43e23;
+  border-bottom: 2px solid #a43e23;
+  border-left: 2px solid #d1ab2d;
+  border-right: 2px solid #a43e23;
+  border-top: 2px solid #d1ab2d;
+  border-radius: 8px;
 }
 
 .submit-input {
@@ -439,31 +479,6 @@ svg line {
 .top-navbar {
   font-weight: bold;
   padding: 5px 0;
-}
-
-#username {
-  border: 2px solid #046ab0;
-  border-radius: 8px;
-}
-
-#username::-webkit-input-placeholder {
-  color: #046ab0;
-  font-style: italic;
-}
-
-#username:-ms-input-placeholder {
-  color: #046ab0;
-  font-style: italic;
-}
-
-#username::-ms-input-placeholder {
-  color: #046ab0;
-  font-style: italic;
-}
-
-#username::placeholder {
-  color: #046ab0;
-  font-style: italic;
 }
 
 @media (max-width: 767px) {

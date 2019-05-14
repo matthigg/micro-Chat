@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // Enable submit button only if there is text in the input field
-  document.querySelector('#username').oninput = () => {
-    if (document.querySelector('#username').value.length > 0)
+  document.querySelector('.input-username').oninput = () => {
+    if (document.querySelector('.input-username').value.length > 0)
       document.querySelector('.submit-button').disabled = false;
     else
       document.querySelector('.submit-button').disabled = true;
