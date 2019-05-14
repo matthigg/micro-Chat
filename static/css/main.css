@@ -139,9 +139,10 @@ a:hover {
   color: #a43e23;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.avatar-border {
+  border: 1px solid #202557;
+  height: 42px;
+  width: 42px;
 }
 
 body {
@@ -149,21 +150,43 @@ body {
   background-color: #e5e4cf;
 }
 
-.avatar-border {
-  border: 1px solid #202557;
-  height: 42px;
-  width: 42px;
+.button {
+  background-color: #202557;
+  border-color: #046ab0;
+  color: #e5e4cf;
+}
+
+.button[disabled] {
+  background-color: #e5e4cf;
+  border-color: #046ab0;
+  color: #046ab0;
+}
+
+.button {
+  border-width: 2px;
+  border-radius: 8px;
+  padding: 5px 15px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover:enabled {
+  background-color: #a43e23;
+  border-bottom: 2px solid #a43e23;
+  border-left: 2px solid #d1ab2d;
+  border-right: 2px solid #a43e23;
+  border-top: 2px solid #d1ab2d;
+  border-radius: 8px;
 }
 
 .center-block {
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-.close:hover {
-  color: #e5e4cf;
-  text-decoration: none;
 }
 
 /* Add margin to bottom of page to account for input height */
@@ -179,10 +202,21 @@ body {
   }
 }
 
-.choose-a-name {
+.input-channel-div {
   margin-left: auto;
   margin-right: auto;
   max-width: 330px;
+}
+
+.input-username-div {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 330px;
+}
+
+.close:hover {
+  color: #e5e4cf;
+  text-decoration: none;
 }
 
 .error {
@@ -241,6 +275,11 @@ body {
 
 .horizontal-border-top {
   border-top: 2px solid #202557;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
 }
 
 .input {
@@ -407,39 +446,6 @@ body {
   margin-left: 0;
 }
 
-.button {
-  background-color: #202557;
-  border-color: #046ab0;
-  color: #e5e4cf;
-}
-
-.button[disabled] {
-  background-color: #e5e4cf;
-  border-color: #046ab0;
-  color: #046ab0;
-}
-
-.button {
-  border-width: 2px;
-  border-radius: 8px;
-  padding: 5px 15px;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-}
-
-.button:focus {
-  outline: none;
-}
-
-.button:hover:enabled {
-  background-color: #a43e23;
-  border-bottom: 2px solid #a43e23;
-  border-left: 2px solid #d1ab2d;
-  border-right: 2px solid #a43e23;
-  border-top: 2px solid #d1ab2d;
-  border-radius: 8px;
-}
-
 .submit-input {
   background-color: #202557;
   border-color: #202557;
@@ -466,10 +472,6 @@ svg {
 
 svg line {
   stroke: #202557;
-}
-
-.text-align-center {
-  text-align: center;
 }
 
 .top-navbar {

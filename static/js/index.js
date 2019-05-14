@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // The 'Create a new channel' submit button is disabled by default. Enable 
   // 'Create a new channel' submit button only if there is text in the input 
   // field.
-  document.querySelector('#new-channel').oninput = () => {
-    if (document.querySelector('#new-channel').value.length > 0)
+  document.querySelector('.input-channel').oninput = () => {
+    if (document.querySelector('.input-channel').value.length > 0)
       document.querySelector('.button').disabled = false;
     else
       document.querySelector('.button').disabled = true;
