@@ -16,7 +16,7 @@
       <div class="mr-auto">Welcome, {{ g.username }}!</div>
     </div>
     <div class="col-4 flex">
-      <img class="margin-auto" width="130px" src="{{ url_for('static', filename='img/logo-2.svg') }}">
+      <img class="center-block" width="130px" src="{{ url_for('static', filename='img/chatroom-logo-d-01.svg') }}">
     </div>
     <div class="col-4 flex">  
       <a class="ml-auto" href="{{ url_for('logout') }}">Logout</a>
@@ -28,7 +28,7 @@
     <div class="col-12 text-align-center">
       <h5 class="mt-2">Create a Channel</h5>
       <form class="mb-3" method="post">
-        <input id="new-channel" name="new_channel" class="form-control ml-auto mr-auto mb-3" type="text" placeholder="Enter a channel name" onkeypress="return AvoidSpace(event)">
+        <input id="new-channel" class="form-control ml-auto mr-auto mb-3" name="new_channel" type="text" placeholder="Enter a channel name" onkeypress="return AvoidSpace(event)">
         <div>
           <button class="submit-button" type="submit" disabled>Create Channel</button>
         </div>

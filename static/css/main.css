@@ -283,10 +283,6 @@ body {
   padding: 20px;
 }
 
-.margin-auto {
-  margin: auto;
-}
-
 .message-history {
   height: 40px;
   /* match div.style.height in channel.js */
