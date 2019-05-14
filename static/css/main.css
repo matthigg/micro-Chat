@@ -14,6 +14,30 @@
   color: #222;
 }
 
+.color-bank-3 {
+  color: #183419;
+  color: #448045;
+  color: #8dc981;
+  color: #81938a;
+  color: #080e0a;
+}
+
+.color-bank-2 {
+  color: #0e102f;
+  color: #1e1b57;
+  color: #6a64ac;
+  color: #78ba4b;
+  color: #b6d779;
+}
+
+.color-bank-2 {
+  color: #046ab0;
+  color: #e5e4cf;
+  color: #d1ab2d;
+  color: #a43e23;
+  color: #202557;
+}
+
 .modal {
   display: none;
   /* Hidden by default */
@@ -40,7 +64,7 @@
 /* Modal Content */
 .modal-content {
   position: relative;
-  background-color: #2f1f25;
+  background-color: #202557;
   margin: auto;
   padding: 0;
   width: 80%;
@@ -61,6 +85,7 @@
     opacity: 1;
   }
 }
+
 @keyframes animatetop {
   from {
     top: -300px;
@@ -71,9 +96,10 @@
     opacity: 1;
   }
 }
+
 /* The Close Button */
 .close {
-  color: #dedd98;
+  color: #e5e4cf;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -81,15 +107,15 @@
 
 .close:hover,
 .close:focus {
-  color: #b39e42;
+  color: #046ab0;
   text-decoration: none;
   cursor: pointer;
 }
 
 .modal-header {
   padding: 2px 16px;
-  background-color: #2f1f25;
-  color: #dedd98;
+  background-color: #202557;
+  color: #e5e4cf;
 }
 
 .modal-body {
@@ -98,28 +124,29 @@
 
 .modal-footer {
   padding: 2px 16px;
-  background-color: #2f1f25;
-  color: #dedd98;
+  background-color: #202557;
+  color: #e5e4cf;
 }
 
 .submit-button {
-  background-color: #2f1f25;
-  border-color: #b39e42;
-  color: #dedd98;
+  background-color: #202557;
+  border-color: #046ab0;
+  color: #e5e4cf;
 }
 
 .submit-button[disabled] {
-  background-color: #dedd98;
-  border-color: #b39e42;
-  color: #b39e42;
+  background-color: #e5e4cf;
+  border-color: #046ab0;
+  color: #046ab0;
 }
 
 a {
-  color: #b39e42;
+  color: #046ab0;
   font-weight: bold;
 }
+
 a:hover {
-  color: #b39e42;
+  color: #046ab0;
 }
 
 html {
@@ -128,18 +155,24 @@ html {
 }
 
 body {
-  color: #2f1f25;
-  background-color: #dedd98;
+  color: #202557;
+  background-color: #e5e4cf;
 }
 
 .avatar-border {
-  border: 1px solid #2f1f25;
+  border: 1px solid #202557;
   height: 42px;
   width: 42px;
 }
 
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .close:hover {
-  color: #dedd98;
+  color: #e5e4cf;
   text-decoration: none;
 }
 
@@ -155,36 +188,50 @@ body {
     margin-left: 200px;
   }
 }
+
 #choose-a-name {
   margin: auto;
   max-width: 330px;
 }
 
 .error {
-  color: #15353c;
+  color: #d1ab2d;
   font-weight: bold;
 }
 
 .flex {
-  align-items: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
 .flex-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 /* Change the default bootstrap blue glow around input fields */
 /* https://stackoverflow.com/questions/14820952/change-bootstrap-input-focus-blue-glow */
 .form-control:focus {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   outline: none;
 }
 
 .form-input {
-  flex-grow: 1;
-  flex-shrink: 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
 .footer {
@@ -202,11 +249,11 @@ body {
 }
 
 .horizontal-border-top {
-  border-top: 2px solid #2f1f25;
+  border-top: 2px solid #202557;
 }
 
 #introduction {
-  background-color: #dedd98;
+  background-color: #e5e4cf;
   margin-left: auto;
   margin-right: auto;
   max-width: 660px;
@@ -225,14 +272,31 @@ body {
 }
 
 #message-input {
-  border-color: #2f1f25;
+  border-color: #202557;
   border-width: 2px 0 2px 2px;
-  color: #2f1f25;
+  color: #202557;
 }
-#message-input::placeholder {
-  color: #b39e42;
+
+#message-input::-webkit-input-placeholder {
+  color: #046ab0;
   font-style: italic;
 }
+
+#message-input:-ms-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+#message-input::-ms-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+#message-input::placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
 #message-input:focus {
   outline: none;
 }
@@ -243,8 +307,9 @@ body {
     margin-left: 20px;
   }
 }
+
 .message-spacer {
-  background-color: #2f1f25;
+  background-color: #202557;
   width: 200px;
 }
 
@@ -253,8 +318,9 @@ body {
     display: none;
   }
 }
+
 .modal-body {
-  color: #dedd98;
+  color: #e5e4cf;
 }
 
 .modal-header {
@@ -266,22 +332,25 @@ body {
 }
 
 .modal-nav-button {
-  background-color: #dedd98;
-  border-color: #2f1f25;
+  background-color: #e5e4cf;
+  border-color: #202557;
   border-radius: 8px 0 0 8px;
   border-width: 2px 0 2px 2px;
-  color: #b39e42;
+  color: #046ab0;
   margin-left: 20px;
 }
+
 .modal-nav-button:hover {
-  background-color: #2f1f25;
-  color: #b39e42;
+  background-color: #202557;
+  color: #046ab0;
 }
+
 .modal-nav-button:focus {
   outline: none;
 }
+
 .modal-nav-button:hover svg line {
-  stroke: #b39e42;
+  stroke: #046ab0;
 }
 
 @media (min-width: 767px) {
@@ -289,11 +358,28 @@ body {
     display: none;
   }
 }
+
 #new-channel {
   width: 80%;
 }
+
+#new-channel::-webkit-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+#new-channel:-ms-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+#new-channel::-ms-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
 #new-channel::placeholder {
-  color: #b39e42;
+  color: #046ab0;
   font-style: italic;
 }
 
@@ -306,28 +392,33 @@ body {
   border-width: 2px;
   border-radius: 8px;
   padding: 5px 15px;
+  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
+
 .submit-button:focus {
   outline: none;
 }
+
 .submit-button:hover {
   opacity: 0.8;
 }
 
 .submit-input {
-  background-color: #2f1f25;
-  border-color: #2f1f25;
+  background-color: #202557;
+  border-color: #202557;
   border-radius: 0 8px 8px 0;
   border-width: 2px 2px 2px 3px;
-  color: #dedd98;
+  color: #e5e4cf;
   margin-right: 20px;
 }
+
 .submit-input[disabled] {
-  background-color: #dedd98;
-  border-color: #2f1f25;
-  color: #b39e42;
+  background-color: #e5e4cf;
+  border-color: #202557;
+  color: #046ab0;
 }
+
 .submit-input:focus {
   outline: none;
 }
@@ -336,8 +427,9 @@ svg {
   height: 34px;
   width: 20px;
 }
+
 svg line {
-  stroke: #2f1f25;
+  stroke: #202557;
 }
 
 .text-align-center {
@@ -350,11 +442,27 @@ svg line {
 }
 
 #username {
-  border: 2px solid #b39e42;
+  border: 2px solid #046ab0;
   border-radius: 8px;
 }
+
+#username::-webkit-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+#username:-ms-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+#username::-ms-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
 #username::placeholder {
-  color: #b39e42;
+  color: #046ab0;
   font-style: italic;
 }
 
@@ -365,15 +473,15 @@ svg line {
     width: 0;
   }
 }
+
 @media (min-width: 767px) {
   #user-panel {
-    background-color: #2f1f25;
-    color: #dedd98;
+    background-color: #202557;
+    color: #e5e4cf;
     height: 100%;
     padding: 10px;
     position: fixed;
     width: 200px;
   }
 }
-
 /*# sourceMappingURL=main.css.map */
