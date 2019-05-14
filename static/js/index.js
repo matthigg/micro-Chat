@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // field.
   document.querySelector('#new-channel').oninput = () => {
     if (document.querySelector('#new-channel').value.length > 0)
-      document.querySelector('.submit-button').disabled = false;
+      document.querySelector('.button').disabled = false;
     else
-      document.querySelector('.submit-button').disabled = true;
+      document.querySelector('.button').disabled = true;
   };
 
   // Custom parser that converts the channel names returned from application.py

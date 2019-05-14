@@ -407,19 +407,19 @@ body {
   margin-left: 0;
 }
 
-.submit-button {
+.button {
   background-color: #202557;
   border-color: #046ab0;
   color: #e5e4cf;
 }
 
-.submit-button[disabled] {
+.button[disabled] {
   background-color: #e5e4cf;
   border-color: #046ab0;
   color: #046ab0;
 }
 
-.submit-button {
+.button {
   border-width: 2px;
   border-radius: 8px;
   padding: 5px 15px;
@@ -427,11 +427,11 @@ body {
   transition: 0.2s;
 }
 
-.submit-button:focus {
+.button:focus {
   outline: none;
 }
 
-.submit-button:hover:enabled {
+.button:hover:enabled {
   background-color: #a43e23;
   border-bottom: 2px solid #a43e23;
   border-left: 2px solid #d1ab2d;
