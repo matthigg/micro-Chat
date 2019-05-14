@@ -32,7 +32,7 @@
   $ flask run
 
 # Display Name
-- Files: login.html, login.js
+_login.html, login.js_
 
 - Creating a Login Page: https://www.youtube.com/watch?v=eBwhBrNbrNI
 
@@ -52,19 +52,19 @@
     $ python -c 'import os; print(os.urandom(16))'
 
 # Channel Creation & Channel List
-- Files: index.html, index.js
+_index.html, index.js_
 
 - Once a visitor has chosen a display name they are taken to index.html which displays a greeting to the user, a randomly generated avatar, a list of active channels (if any), an input field that allows for the creation of a new channel, and a logout link. From here, visitors can create new channels or join existing channels.
 
 # Messages View & Sending Messages
-- Files: channel.html, channel.js
+_channel.html, channel.js_
 
 - Within each channel the user is greeted with a message letting them know which channel they are in, followed by chat history (if any) that includes up to the most recent 100 messages. There is an input field to submit messages (with no character restrictions, which is probably not safe for production), followed by a link to log out of the channel, and another link to log out of both the channel and the user session.
 
 - Only the most recent 100 messages per channel are stored server-side.
 
 # Remembering the Channel
-- File: application.py
+_application.py_
 
 - The display name (username) and channel (channel_name) are stored server-side via application.py using Flask-Session/"session object" and the g variable -- both are used in redirecting the user to appropriate pages. The username is also associated with every message a user posts in a chatroom.
 
@@ -80,12 +80,12 @@
 - The personal touch was associating randomly-generated avatars with each unique username using the Adorable Avatars API at http://avatars.adorable.io/.
 
 # Production
-- This app is a project for CS50 - Web Development with JavaScript and Python, and hasn't been pushed to production. However, in the event that it does get deployed, it would probably be a good idea to put some kind of filter on chatroom messages to prevent hax and also check out these resources:
+- Resources on deploying Flask applications:
 
   1. http://flask.pocoo.org/docs/1.0/tutorial/deploy/
   2. http://flask.pocoo.org/docs/1.0/config/
 
-- If deploying to Heroku, change the application launching command in the Procfile to this:
+- If deploying to Heroku, change the application launching command in the Procfile by adding an eventlet worker:
 
   > web: gunicorn --worker-class eventlet -w 1 application:app
 
