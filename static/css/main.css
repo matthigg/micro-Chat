@@ -163,7 +163,7 @@ body {
 }
 
 .button {
-  border-width: 2px;
+  border: 2px solid #046ab0;
   border-radius: 8px;
   padding: 5px 15px;
   -webkit-transition: 0.2s;
@@ -176,10 +176,7 @@ body {
 
 .button:hover:enabled {
   background-color: #a43e23;
-  border-bottom: 2px solid #a43e23;
-  border-left: 2px solid #d1ab2d;
-  border-right: 2px solid #a43e23;
-  border-top: 2px solid #d1ab2d;
+  border: 2px solid #d1ab2d;
   border-radius: 8px;
 }
 
@@ -200,18 +197,6 @@ body {
   #chatroom {
     margin-left: 200px;
   }
-}
-
-.input-channel-div {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 330px;
-}
-
-.input-username-div {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 330px;
 }
 
 .close:hover {
@@ -283,9 +268,9 @@ html {
 }
 
 .input {
-  border: 2px solid #046ab0;
+  border: 2px solid #202557;
   border-radius: 8px;
-  color: #046ab0;
+  color: #202557;
 }
 
 .input::-webkit-input-placeholder {
@@ -312,6 +297,28 @@ html {
   border: 2px solid #d1ab2d;
   border-radius: 8px;
   color: #a43e23;
+}
+
+.input:focus::-webkit-input-placeholder {
+  color: #d1ab2d;
+}
+
+.input:focus:-ms-input-placeholder {
+  color: #d1ab2d;
+}
+
+.input:focus::-ms-input-placeholder {
+  color: #d1ab2d;
+}
+
+.input:focus::placeholder {
+  color: #d1ab2d;
+}
+
+.input-channel-div {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 330px;
 }
 
 #input-message {
@@ -341,23 +348,39 @@ html {
 }
 
 #input-message:focus {
-  border-color: #046ab0;
-  color: #202557;
+  border-color: #d1ab2d;
+  color: #a43e23;
   outline: none;
+}
+
+#input-message:focus::-webkit-input-placeholder {
+  color: #d1ab2d;
+}
+
+#input-message:focus:-ms-input-placeholder {
+  color: #d1ab2d;
+}
+
+#input-message:focus::-ms-input-placeholder {
+  color: #d1ab2d;
+}
+
+#input-message:focus::placeholder {
+  color: #d1ab2d;
 }
 
 #input-message:focus + .input-message-submit[disabled] {
   border-bottom: 2px solid;
   border-right: 2px solid;
-  border-color: #046ab0;
-  color: #046ab0;
+  border-color: #d1ab2d;
+  color: #d1ab2d;
   outline: none;
 }
 
 #input-message:focus + .input-message-submit {
   border-bottom: 2px solid;
   border-right: 2px solid;
-  border-color: #046ab0;
+  border-color: #d1ab2d;
   color: #e5e4cf;
   outline: none;
 }
@@ -388,10 +411,17 @@ html {
 }
 
 .input-message-submit:hover, .input-message-submit:focus {
-  background-color: #046ab0;
+  background-color: #a43e23;
   border-color: #202557;
+  border-top: 2px solid #202557;
   border-width: 2px 2px 2px 3px;
   outline: none;
+}
+
+.input-username-div {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 330px;
 }
 
 #introduction {
