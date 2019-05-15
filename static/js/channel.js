@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#input-message').oninput = () => {
     console.log('key up');
     if (document.querySelector('#input-message').value.length > 0)
-      document.querySelector('.input-submit').disabled = false;
+      document.querySelector('.input-message-submit').disabled = false;
     else
-      document.querySelector('.input-submit').disabled = true;
+      document.querySelector('.input-message-submit').disabled = true;
   };
 
   // Scroll down to the newest message if the message history takes up more space
@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // When message is submitted, save it, clear the input field, and disable the
     // submit button.
-    document.querySelector('.input-submit').onclick = () => {
+    document.querySelector('.input-message-submit').onclick = () => {
       const message = document.querySelector('#input-message').value;
-      document.querySelector('.input-submit').disabled = true;
+      document.querySelector('.input-message-submit').disabled = true;
       document.querySelector('#input-message').value = '';
 
       // Reformat time-stamp; the date is calculated in milliseconds since Jan. 1,

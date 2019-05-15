@@ -346,7 +346,7 @@ html {
   outline: none;
 }
 
-#input-message:focus + .input-submit[disabled] {
+#input-message:focus + .input-message-submit[disabled] {
   border-bottom: 2px solid;
   border-right: 2px solid;
   border-color: #046ab0;
@@ -354,7 +354,7 @@ html {
   outline: none;
 }
 
-#input-message:focus + .input-submit {
+#input-message:focus + .input-message-submit {
   border-bottom: 2px solid;
   border-right: 2px solid;
   border-color: #046ab0;
@@ -369,23 +369,28 @@ html {
   }
 }
 
-.input-submit {
+.input-message-submit {
   background-color: #202557;
+  border-bottom: 2px solid;
   border-color: #202557;
+  border-left: 3px solid #202557;
   border-radius: 0 8px 8px 0;
-  border-width: 2px 2px 2px 3px;
+  border-right: 2px solid #202557;
   color: #e5e4cf;
   margin-right: 20px;
 }
 
-.input-submit[disabled], .input-submit[disabled]:hover {
+.input-message-submit[disabled], .input-message-submit[disabled]:hover {
   background-color: #e5e4cf;
+  border-color: #202557;
   color: #046ab0;
   outline: none;
 }
 
-.input-submit:hover, .input-submit:focus {
+.input-message-submit:hover, .input-message-submit:focus {
   background-color: #046ab0;
+  border-color: #202557;
+  border-width: 2px 2px 2px 3px;
   outline: none;
 }
 
