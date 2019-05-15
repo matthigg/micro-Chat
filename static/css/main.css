@@ -136,7 +136,7 @@ a {
 }
 
 a:hover {
-  color: #a43e23;
+  color: #d1ab2d;
 }
 
 .avatar-border {
@@ -309,9 +309,84 @@ html {
 }
 
 .input:focus {
-  border: 2px solid #a43e23;
+  border: 2px solid #d1ab2d;
   border-radius: 8px;
   color: #a43e23;
+}
+
+#input-message {
+  border-color: #202557;
+  border-width: 2px 0 2px 2px;
+  color: #202557;
+}
+
+#input-message::-webkit-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+#input-message:-ms-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+#input-message::-ms-input-placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+#input-message::placeholder {
+  color: #046ab0;
+  font-style: italic;
+}
+
+#input-message:focus {
+  border-color: #046ab0;
+  color: #202557;
+  outline: none;
+}
+
+#input-message:focus + .input-submit[disabled] {
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  border-color: #046ab0;
+  color: #046ab0;
+  outline: none;
+}
+
+#input-message:focus + .input-submit {
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  border-color: #046ab0;
+  color: #e5e4cf;
+  outline: none;
+}
+
+@media (min-width: 767px) {
+  #input-message {
+    border-radius: 8px 0 0 8px;
+    margin-left: 20px;
+  }
+}
+
+.input-submit {
+  background-color: #202557;
+  border-color: #202557;
+  border-radius: 0 8px 8px 0;
+  border-width: 2px 2px 2px 3px;
+  color: #e5e4cf;
+  margin-right: 20px;
+}
+
+.input-submit[disabled], .input-submit[disabled]:hover {
+  background-color: #e5e4cf;
+  color: #046ab0;
+  outline: none;
+}
+
+.input-submit:hover, .input-submit:focus {
+  background-color: #046ab0;
+  outline: none;
 }
 
 #introduction {
@@ -327,43 +402,6 @@ html {
   /* match div.style.height in channel.js */
   margin: 5px;
   /* match div.style.margin in channel.js */
-}
-
-#message-input {
-  border-color: #202557;
-  border-width: 2px 0 2px 2px;
-  color: #202557;
-}
-
-#message-input::-webkit-input-placeholder {
-  color: #046ab0;
-  font-style: italic;
-}
-
-#message-input:-ms-input-placeholder {
-  color: #046ab0;
-  font-style: italic;
-}
-
-#message-input::-ms-input-placeholder {
-  color: #046ab0;
-  font-style: italic;
-}
-
-#message-input::placeholder {
-  color: #046ab0;
-  font-style: italic;
-}
-
-#message-input:focus {
-  outline: none;
-}
-
-@media (min-width: 767px) {
-  #message-input {
-    border-radius: 8px 0 0 8px;
-    margin-left: 20px;
-  }
 }
 
 .message-spacer {
@@ -444,25 +482,6 @@ html {
 .no-gutters {
   margin-right: 0;
   margin-left: 0;
-}
-
-.submit-input {
-  background-color: #202557;
-  border-color: #202557;
-  border-radius: 0 8px 8px 0;
-  border-width: 2px 2px 2px 3px;
-  color: #e5e4cf;
-  margin-right: 20px;
-}
-
-.submit-input[disabled] {
-  background-color: #e5e4cf;
-  border-color: #202557;
-  color: #046ab0;
-}
-
-.submit-input:focus {
-  outline: none;
 }
 
 svg {

@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const username = document.querySelector('.username').innerHTML;
 
   // Enable message submit button only if there is text in the input field.
-  document.querySelector('.message-input').oninput = () => {
+  document.querySelector('#input-message').oninput = () => {
     console.log('key up');
-    if (document.querySelector('.message-input').value.length > 0)
-      document.querySelector('.submit-input').disabled = false;
+    if (document.querySelector('#input-message').value.length > 0)
+      document.querySelector('.input-submit').disabled = false;
     else
-      document.querySelector('.submit-input').disabled = true;
+      document.querySelector('.input-submit').disabled = true;
   };
 
   // Scroll down to the newest message if the message history takes up more space
@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // When message is submitted, save it, clear the input field, and disable the
     // submit button.
-    document.querySelector('.submit-input').onclick = () => {
-      const message = document.querySelector('.message-input').value;
-      document.querySelector('.submit-input').disabled = true;
-      document.querySelector('.message-input').value = '';
+    document.querySelector('.input-submit').onclick = () => {
+      const message = document.querySelector('#input-message').value;
+      document.querySelector('.input-submit').disabled = true;
+      document.querySelector('#input-message').value = '';
 
       // Reformat time-stamp; the date is calculated in milliseconds since Jan. 1,
       // 1970 (UNIX time).
