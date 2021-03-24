@@ -52,7 +52,7 @@ pytz==2018.9
 PyYAML==3.13
 redis==3.2.1
 requests==2.20.1
-rsa==3.4.2
+rsa==4.1
 s3transfer==0.2.0
 semantic-version==2.5.0
 sendgrid==6.0.4
